@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.studybehavior.MainActivity"
+    tools:showIn="@layout/activity_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tab_layout"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <Button
+            android:id="@+id/btn_bottom_sheet_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="sheet 显示/隐藏" />
+
+    </LinearLayout>
+
+    <!--页面上只能看到Toolbar和一个Button：sheet 显示/隐藏，然后Android:id="@+id/tab_layout"这个布局是横向的，
+    给它设置了Behavior：app:layout_behavior="@string/bottom_sheet_behavior"，经过测试发现，
+    如果不给tab_layout设置BottomSheetBehavior，它会浮动在整个页面的顶部，并在Toolbar的下面。
+    设置了BottomSheetBehavior它会被BottomSheetBehavior自动移动到页面底部外边，
+    所以在页面上是看不到android:id="@+id/tab_layout"这个布局的。-->
+    <LinearLayout
+        android:id="@+id/tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/holo_purple"
+        app:layout_behavior="@string/bottom_sheet_behavior">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="第一" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="第二" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="第三" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="第四" />
+    </LinearLayout>
+
+</RelativeLayout>
