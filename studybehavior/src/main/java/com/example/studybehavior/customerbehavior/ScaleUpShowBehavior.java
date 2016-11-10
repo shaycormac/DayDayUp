@@ -15,7 +15,7 @@ import com.example.studybehavior.utils.AnimatorUtil;
  * @datetime 创建时间：2016-11-10 14:00 GMT+8
  * @email 邮箱： 574583006@qq.com
  */
-public class ScaleUpShowBahavior extends FloatingActionButton.Behavior 
+public class ScaleUpShowBehavior extends FloatingActionButton.Behavior 
 {
     //viewPropertyAnimatorListener和isAnimatingOut用来监听隐藏动画的执行，
     // 当动画执行完毕后才view.setVisibility(View.GONE);
@@ -39,7 +39,7 @@ public class ScaleUpShowBahavior extends FloatingActionButton.Behavior
             isAnimatingOut = false;
         }
     };
-    public ScaleUpShowBahavior(Context context, AttributeSet attributeSet)
+    public ScaleUpShowBehavior(Context context, AttributeSet attributeSet)
     {
         super();
     }

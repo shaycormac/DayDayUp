@@ -30,6 +30,6 @@
         android:layout_margin="16dp"
         android:src="@mipmap/abc_ic_ab_back_top"
         app:layout_behavior="@string/scale_up_show_behavior"
-        app:layout_scrollFlags="scroll|enterAlways|snap" />
+        app:layout_scrollFlags="scroll|enterAlways" />
 
 </android.support.design.widget.CoordinatorLayout>

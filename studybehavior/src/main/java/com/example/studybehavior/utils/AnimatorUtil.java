@@ -20,7 +20,7 @@ public class AnimatorUtil
     {
         view.setVisibility(View.VISIBLE);
         //渐显动画
-        ViewCompat.animate(view).scaleX(1.0f).scaleY(1.0f).setDuration(1000)
+        ViewCompat.animate(view).scaleX(1.0f).scaleY(1.0f).alpha(1.0f).setDuration(1000)
                 .setListener(viewPropertyAnimatorListener)
                 .setInterpolator(FAST_OUT_SLOW_IN_INTERPOLATOR)
                 .start();
