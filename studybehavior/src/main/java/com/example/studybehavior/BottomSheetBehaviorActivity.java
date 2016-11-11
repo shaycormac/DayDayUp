@@ -40,7 +40,8 @@ public class BottomSheetBehaviorActivity extends AppCompatActivity {
         //获取这个behavior
         mBottomSheetBehavior = BottomSheetBehavior.from(tab_layout);
         //点击按钮
-        btn_bottom_sheet_control.setOnClickListener(new View.OnClickListener() {
+        btn_bottom_sheet_control.setOnClickListener(new View.OnClickListener() 
+        {
             @Override
             public void onClick(View v)
             {
@@ -82,6 +83,8 @@ public class BottomSheetBehaviorActivity extends AppCompatActivity {
         initData();
         BottomSheetDialogAdapter adapter = new BottomSheetDialogAdapter();
         recyclerView.setAdapter(adapter);
+        //解决bottomSheetDialog活动到底部消失后，再显示，返回半个页面
+        setBahaviorCallback();
     }
 
     private void initData() {

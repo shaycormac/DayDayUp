@@ -9,7 +9,7 @@
     tools:context="com.example.studybehavior.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <LinearLayout
+    <!--<LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/tab_layout"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:text="sheet 显示/隐藏" />
 
-    </LinearLayout>
+    </LinearLayout>-->
 
     <!--页面上只能看到Toolbar和一个Button：sheet 显示/隐藏，然后Android:id="@+id/tab_layout"这个布局是横向的，
     给它设置了Behavior：app:layout_behavior="@string/bottom_sheet_behavior"，经过测试发现，
@@ -33,32 +33,35 @@
     <LinearLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="@android:color/holo_purple"
         app:layout_behavior="@string/bottom_sheet_behavior">
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/btnBottomSheetBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="第一" />
+            android:text="BottomSheetBehaviorActivity" />
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/btnScaleDownShowBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="第二" />
+            android:text="ScaleDownShowBehaviorActivity" />
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:id="@+id/btnScaleUpShowBehavior"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="第三" />
+            android:text="ScaleUpShowBehaviorActivity" />
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:text="第四" />
     </LinearLayout>

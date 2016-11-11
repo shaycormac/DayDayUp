@@ -1,13 +1,13 @@
 package com.example.studybehavior;
 
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.studybehavior.adapter.RecycleViewAdapter;
 import com.example.studybehavior.utils.AnimatorUtil;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public class ScaleUpShowBehaviorActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private FloatingActionButton fab;
+    private ImageView fab;
     private Toolbar toolbar;
     //设置字符串
     private List<String> stringList = new ArrayList<>();
@@ -66,7 +66,7 @@ public class ScaleUpShowBehaviorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scale_up_show_behavior);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = (ImageView) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         recyclerView.setHasFixedSize(true);
         linearLayoutManager = new LinearLayoutManager(this);
