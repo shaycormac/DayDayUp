@@ -11,10 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.example.studybehavior.testactivity.CustomSpinnerViewActivity;
+
 public class MainActivity extends AppCompatActivity {
     private Button btnBottomSheetBehavior;
     private Button btnScaleDownShowBehavior;
     private Button btnScaleUpShowBehavior;
+    private Button btnCustomSpinnerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         btnBottomSheetBehavior = (Button) findViewById(R.id.btnBottomSheetBehavior);
         btnScaleDownShowBehavior = (Button) findViewById(R.id.btnScaleDownShowBehavior);
         btnScaleUpShowBehavior = (Button) findViewById(R.id.btnScaleUpShowBehavior);
+        btnCustomSpinnerView = (Button) findViewById(R.id.btnCustomSpinnerView);
         bindListener();
     }
 
@@ -54,6 +58,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,ScaleDownShowBehaviorActivity.class));
+            }
+        });
+        btnCustomSpinnerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,CustomSpinnerViewActivity.class));
             }
         });
     }

@@ -60,10 +60,11 @@
             android:text="ScaleUpShowBehaviorActivity" />
 
         <Button
+            android:id="@+id/btnCustomSpinnerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="第四" />
+            android:text="自定义的Spinner" />
     </LinearLayout>
 
 </RelativeLayout>
