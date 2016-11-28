@@ -2,6 +2,7 @@ package com.example.somemyidea;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
@@ -37,6 +38,7 @@ public class ToastActivity extends AppCompatActivity {
         });
 */
         cancel = (TextView) findViewById(R.id.cancel);
+        TextViewCompat.setTextAppearance(cancel,R.style.BlueButton);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +47,7 @@ public class ToastActivity extends AppCompatActivity {
         });
 
         show = (TextView) findViewById(R.id.show);
+        TextViewCompat.setTextAppearance(show,R.style.BlueButton);
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
