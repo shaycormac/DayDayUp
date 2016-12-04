@@ -1,4 +1,4 @@
-package com.example.somemyidea;
+package com.example.somemyidea.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.somemyidea.R;
 import com.example.somemyidea.entity.City;
 import com.example.somemyidea.utils.ToastUtils;
 import com.example.somemyidea.widget.CustomTablayout;
