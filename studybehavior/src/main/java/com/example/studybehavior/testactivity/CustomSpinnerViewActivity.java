@@ -9,6 +9,7 @@ import com.example.studybehavior.R;
 import com.example.studybehavior.entity.City;
 import com.example.studybehavior.widget.CustomRadionGroup;
 import com.example.studybehavior.widget.CustomSpinnerView;
+import com.example.studybehavior.widget.CustomTabSelectorView;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class CustomSpinnerViewActivity extends AppCompatActivity {
     private CustomSpinnerView customSpinnerView;
     private CustomRadionGroup customRadioButton;
+    private CustomTabSelectorView customTabView;
     private Map<Object, List<Object>> spinnerMap;
     private ArrayList<City> cities;
     @Override
@@ -26,6 +28,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
         setContentView(R.layout.activity_custom_spinner_view);
         customSpinnerView = (CustomSpinnerView) findViewById(R.id.customSpinnerView);
         customRadioButton = (CustomRadionGroup) findViewById(R.id.customRadioButton);
+        customTabView = (CustomTabSelectorView) findViewById(R.id.customTabView);
         //准备数据
         initRadioButtonData();
         initData();
@@ -47,6 +50,19 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
                 
             }
         });
+        
+        customTabView.setSpinnerData(spinnerMap, new CustomTabSelectorView.SpinnerOnItemSelectListener<Object, Object>()
+        {
+            @Override
+            public void onItemSelected(View view, int position, Object o, List<Object> t)
+            {
+                City city= (City) t.get(position);
+                String value = "当前的值为：fatherItem：" + o + "  选中的值为:" + t.get(position).toString()
+                        + "位置：" + position+"  获取到的值为："+city.name+"  城市id"+city.id;
+                Toast.makeText(CustomSpinnerViewActivity.this,value,Toast.LENGTH_LONG).show();
+
+            }
+        });
     }
 
     private void initRadioButtonData() {
@@ -64,7 +80,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
     {
         spinnerMap = new LinkedHashMap<>();
         City city;
-        City cityFather = new City("0", "苏州的城市");
+        City cityFather = new City("0", "州");
         List<Object> cityList = new ArrayList<>();
         cityList.add(0,cityFather);
         for (int i = 0; i <20 ; i++)
@@ -75,7 +91,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
         
         spinnerMap.put(cityFather, cityList);
         List<Object> cityList2=new ArrayList<>();
-        City cityFather2 = new City("0", "中央的北京");
+        City cityFather2 = new City("0", "北京");
         cityList2.add(0,cityFather2);
         for (int i = 0; i <5 ; i++)
         {
@@ -96,7 +112,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
        
         
         List<Object> cityList4=new ArrayList<>();
-        City cityFather4 = new City("0", "广州啊，哈哈");
+        City cityFather4 = new City("0", "广州啊");
         cityList4.add(0,cityFather4);
         for (int i = 0; i <7 ; i++)
         {
@@ -106,7 +122,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
       
         spinnerMap.put(cityFather4, cityList4);
         List<Object> cityList5=new ArrayList<>();
-        City cityFather5 = new City("0", "新疆的哈密瓜");
+        City cityFather5 = new City("0", "新疆的哈");
         cityList5.add(0,cityFather5);
         for (int i = 0; i <9 ; i++)
         {

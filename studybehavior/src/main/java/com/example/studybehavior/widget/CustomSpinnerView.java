@@ -139,7 +139,8 @@ public class CustomSpinnerView extends HorizontalScrollView
             //最后添加数据
             llContainer.addView(spinner);
             //添加分割线
-            if (isDividerSpace) {
+            if (isDividerSpace) 
+            {
                 dividerView = new View(context);
                 dividerLayoutParams = new LinearLayout.LayoutParams(DensityUtil.dip2px(context, 0.5f), ViewGroup.LayoutParams.MATCH_PARENT);
                 dividerLayoutParams.setMargins(0, DensityUtil.dip2px(context, 10f), 0, DensityUtil.dip2px(context, 10f));

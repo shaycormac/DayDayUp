@@ -27,5 +27,13 @@
         android:layout_height="44dp"
         android:layout_marginTop="60dp"
         android:id="@+id/customRadioButton"/>
+    
+    <com.example.studybehavior.widget.CustomTabSelectorView
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="20dp"
+        android:scrollbars="none"
+        android:id="@+id/customTabView"/>
 
 </LinearLayout>
