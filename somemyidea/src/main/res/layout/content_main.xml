@@ -21,6 +21,34 @@
         android:layout_height="wrap_content"
         android:text="IntentServiceActivity"
         android:id="@+id/btnIntentService"/>
-    
+    <android.support.v7.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ToggleButton
+        android:text="ToggleButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/toggleButton" />
+
+    <CheckedTextView
+        android:text="CheckedTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/checkedTextView" />
+
+    <ImageSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <!--<com.google.android.gms.ads.AdView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/adView" 
+        ads:/>-->
+
 
 </LinearLayout>
