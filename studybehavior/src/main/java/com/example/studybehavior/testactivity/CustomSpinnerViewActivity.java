@@ -7,6 +7,7 @@ import android.widget.Toast;
 
 import com.example.studybehavior.R;
 import com.example.studybehavior.entity.City;
+import com.example.studybehavior.widget.CustomRadionGroup;
 import com.example.studybehavior.widget.CustomSpinnerView;
 
 import java.util.ArrayList;
@@ -16,13 +17,17 @@ import java.util.Map;
 
 public class CustomSpinnerViewActivity extends AppCompatActivity {
     private CustomSpinnerView customSpinnerView;
+    private CustomRadionGroup customRadioButton;
     private Map<Object, List<Object>> spinnerMap;
+    private ArrayList<City> cities;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_spinner_view);
         customSpinnerView = (CustomSpinnerView) findViewById(R.id.customSpinnerView);
+        customRadioButton = (CustomRadionGroup) findViewById(R.id.customRadioButton);
         //准备数据
+        initRadioButtonData();
         initData();
         //设置到自定义的控件中
         customSpinnerView.setSpinnerData(spinnerMap, new CustomSpinnerView.SpinnerOnItemSelectListener() {
@@ -35,6 +40,24 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
                 Toast.makeText(CustomSpinnerViewActivity.this,value,Toast.LENGTH_LONG).show();    
             }
         });
+        
+        customRadioButton.setData(cities, new CustomRadionGroup.OnCheckedChangeListener<City>() {
+            @Override
+            public void onCheckedChanged(View view, int position, City city) {
+                
+            }
+        });
+    }
+
+    private void initRadioButtonData() {
+        cities = new ArrayList<>();
+        City city = new City("swdsw", "蘇州蘇州蘇州蘇州蘇州蘇州蘇州蘇州");
+        cities.add(city);
+        city = new City("sdfew", "常州蘇州蘇州蘇州蘇州蘇州蘇州蘇州");
+        cities.add(city);
+        city = new City("sdfewq", "徐州蘇州蘇州蘇州蘇州蘇州");
+        cities.add(city);
+        
     }
 
     private void initData() 

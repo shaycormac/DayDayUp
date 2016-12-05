@@ -1,1 +1,2 @@
-include ':app', ':studybehavior', ':somemyidea', 'demo'
+include ':app', ':studybehavior', ':somemyidea', ':myapplication', 'demo'
+include ':customSpinner'

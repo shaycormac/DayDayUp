@@ -107,7 +107,7 @@ public class CustomSpinnerView extends HorizontalScrollView
             {
                 spinner.setDropDownVerticalOffset(DensityUtil.dip2px(context, 44f));
                 spinner.setDropDownWidth(DensityUtil.getDisplayMetrics(context).widthPixels);
-                spinner.setPopupBackgroundResource(R.color.colorPrimaryDark);
+             //   spinner.setPopupBackgroundResource(R.color.colorPrimaryDark);
             }
             spinner.setGravity(Gravity.CENTER);
             
