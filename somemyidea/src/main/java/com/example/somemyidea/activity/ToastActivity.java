@@ -1,4 +1,4 @@
-package com.example.somemyidea;
+package com.example.somemyidea.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,13 +10,22 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.somemyidea.R;
+import com.example.somemyidea.entity.City;
 import com.example.somemyidea.utils.ToastUtils;
+import com.example.somemyidea.widget.CustomTablayout;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ToastActivity extends AppCompatActivity {
     private TextView cancel;
     private TextView show;
     FloatingActionButton fab;
+    private CustomTablayout customTabLayout;
+    private List<City> cityList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +63,35 @@ public class ToastActivity extends AppCompatActivity {
                 ToastUtils.getInstance().showToast("试一试",ToastActivity.this);
             }
         });
+
+        customTabLayout = (CustomTablayout) findViewById(R.id.customTabLayout);
+        initData();
+        customTabLayout.setTabLayoutData(cityList, new CustomTablayout.OnTabChooseListener<City>() {
+            @Override
+            public void onTabChoosed(int position, City city) 
+            {
+                if (position==0)
+                    Toast.makeText(ToastActivity.this, "获取的值为：position:" + position + "  city" + city.toString(), Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(ToastActivity.this, "获取的值为：position:" + position , Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+    }
+
+    private void initData() 
+    {
+        City city = new City("11", "苏州");
+        cityList.add(city);
+        city = new City("22", "上海");
+        cityList.add(city);
+        city = new City("22", "常州");
+        cityList.add(city);
+        city = new City("22", "徐州");
+        cityList.add(city);
+        city = new City("22", "南通");
+        cityList.add(city);
     }
 
     @Override

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_test_intent_service"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.somemyidea.activity.TestIntentServiceActivity"
+    tools:showIn="@layout/activity_test_intent_service">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:id="@+id/btnTestService"
+        android:text="测试IntentService"
+        android:layout_gravity="center_horizontal"/>
+    <android.support.v7.widget.AppCompatCheckBox
+        android:layout_gravity="center_horizontal"
+        android:layout_width="80dp"
+        android:gravity="center|center_horizontal"
+        android:layout_height="50dp"
+        android:button="@drawable/bg_v7_check_selector" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llInfoContainer"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"/>
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
+    <android.support.v7.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:tint="@color/colorAccent"
+        android:tintMode="multiply"/>
+    
+
+</LinearLayout>
