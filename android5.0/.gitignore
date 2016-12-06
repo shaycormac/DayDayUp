@@ -1,3 +1,7 @@
+/toolsLib/toolsLib.iml
+/pocketUni/pocketUni.iml
+/oneKeyShare/oneKeyShare.iml
+
 ### Android template
 # Built application files
 *.apk
@@ -32,6 +36,11 @@ proguard/
 .navigation/
 
 # Created by .ignore support plugin (hsz.mobi)
+IMKitWithVoIP/
+PAWifi/
 app/
 java_pid6912.hprof
-
+pocketUni/rocoofix/version20160831/debug/patch/
+pocketUni/rocoofix/version20160831/release/patch/
+pocketUni/rocoofix/version20160901/debug/patch/
+pocketUni/rocoofix/version20160901/release/

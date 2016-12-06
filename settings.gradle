@@ -1,2 +1,2 @@
-include ':app', ':studybehavior', ':somemyidea', ':myapplication', 'demo'
+include ':app', ':studybehavior', ':somemyidea', ':myapplication', 'demo', 'android5.0'
 include ':customSpinner'
