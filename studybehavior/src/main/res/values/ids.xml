@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义控件的同一个button设置多个tag使用-->
+    <item type="id" name="tag_list_popwindow"/>
+    <item type="id" name="tag_array_adapter"/>
+</resources>

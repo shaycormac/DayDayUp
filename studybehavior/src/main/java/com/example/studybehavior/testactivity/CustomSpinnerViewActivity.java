@@ -22,6 +22,10 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
     private CustomTabSelectorView customTabView;
     private Map<Object, List<Object>> spinnerMap;
     private ArrayList<City> cities;
+
+    private Map<City, List<City>> tabMap;
+    private City cityFather3;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,10 +34,11 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
         customRadioButton = (CustomRadionGroup) findViewById(R.id.customRadioButton);
         customTabView = (CustomTabSelectorView) findViewById(R.id.customTabView);
         //准备数据
-        initRadioButtonData();
+       // initRadioButtonData();
         initData();
+        initTabData();
         //设置到自定义的控件中
-        customSpinnerView.setSpinnerData(spinnerMap, new CustomSpinnerView.SpinnerOnItemSelectListener() {
+       /* customSpinnerView.setSpinnerData(spinnerMap, new CustomSpinnerView.SpinnerOnItemSelectListener() {
             @Override
             public void onItemSelected(Object fatherItem, List<Object> sunList, View view, int position) 
             {
@@ -49,9 +54,9 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
             public void onCheckedChanged(View view, int position, City city) {
                 
             }
-        });
+        });*/
         
-        customTabView.setSpinnerData(spinnerMap, new CustomTabSelectorView.SpinnerOnItemSelectListener<Object, Object>()
+       /* customTabView.setData(spinnerMap, new CustomTabSelectorView.tabOnItemSelectListener<Object, Object>()
         {
             @Override
             public void onItemSelected(View view, int position, Object o, List<Object> t)
@@ -62,7 +67,75 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
                 Toast.makeText(CustomSpinnerViewActivity.this,value,Toast.LENGTH_LONG).show();
 
             }
+        });*/
+        customTabView.setData(tabMap, new CustomTabSelectorView.tabOnItemSelectListener<City, City>() 
+        {
+            @Override
+            public void onItemSelected(View view, int position, City city, List<City> t) 
+            {
+                String value = "当前位置为：position：" + position +"  获取到的值为："+t.get(position).name+"  城市id"+t.get(position).id;
+                Toast.makeText(CustomSpinnerViewActivity.this,value,Toast.LENGTH_LONG).show();
+                //测试更新数据
+                if (cityFather3!=null)
+                {
+                    List<City> cityList3=new ArrayList<>();
+                    cityList3.add(0, new City("0","全部"));
+                    for (int i = 0; i <5 ; i++)
+                    {
+                        city = new City(String.valueOf(i+1), String.valueOf("上海" + i));
+                        cityList3.add(city);
+                    }
+                    customTabView.updateView(cityFather3,cityList3);
+                }
+                
+            }
         });
+    }
+
+    private void initTabData() 
+    {
+        tabMap = new LinkedHashMap<>();
+        City city;
+        City cityFather = new City("0", "州市");
+        List<City> cityList = new ArrayList<>();
+        cityList.add(0,new City("0","全部"));
+        for (int i = 0; i <20 ; i++)
+        {
+            city = new City(String.valueOf(i+1), String.valueOf("苏州" + i));
+            cityList.add(city);
+        }
+
+        tabMap.put(cityFather, cityList);
+        List<City> cityList2=new ArrayList<>();
+        City cityFather2 = new City("0", "北京");
+        cityList2.add(0,new City("0","全部"));
+        for (int i = 0; i <5 ; i++)
+        {
+            city = new City(String.valueOf(i+1), String.valueOf("北京" + i));
+            cityList2.add(city);
+        }
+
+        tabMap.put(cityFather2, cityList2);
+        List<City> cityList3=new ArrayList<>();
+        cityFather3 = new City("0", "江南");
+        cityList3.add(0,new City("0","全部"));
+        for (int i = 0; i <5 ; i++)
+        {
+            city = new City(String.valueOf(i+1), String.valueOf("上海" + i));
+            cityList3.add(city);
+        }
+        tabMap.put(cityFather3, null);
+
+        List<City> cityList4=new ArrayList<>();
+        City cityFather4 = new City("0", "广州");
+        cityList4.add(0,new City("0", "全部"));
+        for (int i = 0; i <7 ; i++)
+        {
+            city = new City(String.valueOf(i+1), String.valueOf("广州啊，哈哈" + i));
+            cityList4.add(city);
+        }
+
+        tabMap.put(cityFather4, cityList4);
     }
 
     private void initRadioButtonData() {
