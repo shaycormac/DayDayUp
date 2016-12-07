@@ -32,6 +32,7 @@ proguard/
 .navigation/
 
 # Created by .ignore support plugin (hsz.mobi)
-app/
 java_pid6912.hprof
+
+import-summary.txt
 
