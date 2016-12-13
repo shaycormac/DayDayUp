@@ -25,6 +25,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
 
     private Map<City, List<City>> tabMap;
     private City cityFather3;
+    private City cityFather4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,9 +72,9 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
         customTabView.setData(tabMap, new CustomTabSelectorView.tabOnItemSelectListener<City, City>() 
         {
             @Override
-            public void onItemSelected(View view, int position, City city, List<City> t) 
+            public void onItemSelected(View view, int position, City city, City t) 
             {
-                String value = "当前位置为：position：" + position +"  获取到的值为："+t.get(position).name+"  城市id"+t.get(position).id;
+                String value = "当前位置为：position：" + position +"  获取到的值为："+t.name+"  城市id"+t.id;
                 Toast.makeText(CustomSpinnerViewActivity.this,value,Toast.LENGTH_LONG).show();
                 //测试更新数据
                 if (cityFather3!=null)
@@ -87,6 +88,8 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
                     }
                     customTabView.updateView(cityFather3,cityList3);
                 }
+                if (position==2)
+                    customTabView.updateView(cityFather4,null); 
                 
             }
         });
@@ -127,7 +130,7 @@ public class CustomSpinnerViewActivity extends AppCompatActivity {
         tabMap.put(cityFather3, null);
 
         List<City> cityList4=new ArrayList<>();
-        City cityFather4 = new City("0", "广州");
+        cityFather4 = new City("0", "广州");
         cityList4.add(0,new City("0", "全部"));
         for (int i = 0; i <7 ; i++)
         {

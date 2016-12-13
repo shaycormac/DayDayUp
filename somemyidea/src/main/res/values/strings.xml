@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="title_activity_test_intent_service">TestIntentServiceActivity</string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_layout_test">LayoutTestActivity</string>
 </resources>

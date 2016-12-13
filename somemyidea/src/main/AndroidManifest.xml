@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.somemyidea">
-    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS"/>
+
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,7 @@
         <activity
             android:name=".activity.ToastActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name=".service.MyIntentService"
@@ -32,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity.LayoutTestActivity"
+            android:label="@string/title_activity_layout_test"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

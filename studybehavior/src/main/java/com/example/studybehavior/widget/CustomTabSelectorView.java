@@ -79,9 +79,15 @@ public class CustomTabSelectorView extends HorizontalScrollView
         llContainer.setOrientation(LinearLayout.HORIZONTAL);
         this.addView(llContainer);
     }
-    
-    
-    //数据传过来
+
+
+    /**
+     * 设置数据
+     * @param dataMap 传入的参数，要求key和value实体重写toString方法
+     * @param itemSelectListener 回调返回的数据
+     * @param <E>
+     * @param <T>
+     */
     public <E,T>void setData(Map<E,List<T>> dataMap, tabOnItemSelectListener<E,T> itemSelectListener)
     {
         if (dataMap==null || dataMap.isEmpty())
@@ -116,20 +122,14 @@ public class CustomTabSelectorView extends HorizontalScrollView
             if (sunList==null || sunList.isEmpty()) 
             {
                 sunList = new ArrayList<>();
-                //可以转换么？
-                try 
-                {
-                    sunList.add((T) fatherItem);
-                }catch (Exception e)
-                {
-                    
-                }
             }
-            
+            final E finalFatherItem = fatherItem;
+            final List<T> finalSunList = sunList;
             listPopupWindow = new ListPopupWindow(context);
+            final ListPopupWindow finalListPopupWindow = listPopupWindow;
             listPopupWindow.setModal(true);
             listPopupWindow.setWidth(screenWidth);
-            listPopupWindow.setHeight((int) (1.2*screenWidth));
+            listPopupWindow.setHeight(screenWidth);
             button = new Button(context);
             button.setLayoutParams(params);
             button.setGravity(Gravity.CENTER);
@@ -144,6 +144,9 @@ public class CustomTabSelectorView extends HorizontalScrollView
                 @Override
                 public void onClick(View v) 
                 {
+                    //传过来的集合为空，不显示popWindow。
+                    if (finalSunList==null || finalSunList.isEmpty())
+                        return;
                     ListPopupWindow listPopupWindow1 = (ListPopupWindow) v.getTag(R.id.tag_list_popwindow);
                     if (listPopupWindow1!=null)
                         listPopupWindow1.show();
@@ -151,10 +154,8 @@ public class CustomTabSelectorView extends HorizontalScrollView
             });
            
             listPopupWindow.setAnchorView(button);
-            final E finalFatherItem = fatherItem;
-            final List<T> finalSunList = sunList;
-            final ListPopupWindow finalListPopupWindow = listPopupWindow;
-            buttonAdapter = new ArrayAdapter<T>(context, R.layout.list_item_group_filter, sunList){
+            buttonAdapter = new ArrayAdapter<T>(context, R.layout.list_item_group_filter, sunList)
+            {
                 @NonNull
                 @Override
                 public View getView(int position, View convertView, ViewGroup parent) 
@@ -179,7 +180,7 @@ public class CustomTabSelectorView extends HorizontalScrollView
                     finalListPopupWindow.dismiss();
                     mapPosition.put(finalFatherItem, position);
                     if (itemListener!=null)
-                        itemListener.onItemSelected(view,position,finalFatherItem, finalSunList);
+                        itemListener.onItemSelected(view,position,finalFatherItem, finalSunList.get(position));
                 }
             });
             //最后添加数据
@@ -197,14 +198,26 @@ public class CustomTabSelectorView extends HorizontalScrollView
     
     public interface tabOnItemSelectListener<E,T>
     {
-        //将所要的值传出去
-        void onItemSelected(View view, int position, E e, List<T> t);
+        /**
+         * 回调的方法
+         * @param view 当前点击popwindow上对应的View
+         * @param position 当前点击popwindow上对应的位置
+         * @param e 当前点击popwindow对应tab上的实体
+         * @param t 当前点击popwindow对应位置上的实体
+         */
+        void onItemSelected(View view, int position, E e, T t);
     }
     
-    //更新数据（map里面的value值更新，key不更新，需要传一个map过来）
+    /**
+     * 更新数据（map里面的value值更新，key不更新，需要传一个map过来）
+     * @param key
+     * @param tList
+     * @param <E>
+     * @param <T>
+     */
     public <E,T>void updateView(E key,List<T> tList)
     {
-        if (this.mDataMap==null || this.mDataMap.isEmpty()||key==null||tList==null||tList.isEmpty())
+        if (this.mDataMap==null || this.mDataMap.isEmpty()||key==null)
             return;
           if (mDataMap.containsKey(key) && llContainer!=null)
           {
@@ -213,10 +226,44 @@ public class CustomTabSelectorView extends HorizontalScrollView
                   {
                       ArrayAdapter<T> adapter = (ArrayAdapter<T>) button.getTag(R.id.tag_array_adapter);
                       adapter.clear();
+                      if (tList!=null)
                       adapter.addAll(tList);
                      adapter.notifyDataSetChanged();
                   }
           }
+    }
+    /**
+     * 更新数据源，传过来一个map集合。
+     * @param updateMap
+     * @param <E>
+     * @param <T>
+     */
+    public<E,T> void updateData(Map<E,List<T>> updateMap)
+    {
+        if (updateMap==null || updateMap.isEmpty()||this.mDataMap==null || this.mDataMap.isEmpty())
+            return;
+        E e;
+        List<T> tList;
+        for (Map.Entry<E,List<T>> entry: updateMap.entrySet())
+        {
+             e = entry.getKey();
+            tList = entry.getValue();
+            if (e==null||TextUtils.isEmpty(e.toString()))
+                continue;
+            if (mDataMap.containsKey(e) && llContainer!=null)
+            {
+                Button button = (Button) llContainer.findViewWithTag(e);
+                if (button!=null)
+                {
+                    ArrayAdapter<T> adapter = (ArrayAdapter<T>) button.getTag(R.id.tag_array_adapter);
+                    adapter.clear();
+                    if (tList!=null)
+                    adapter.addAll(tList);
+                    adapter.notifyDataSetChanged();
+                }
+            }
+        }
+        
     }
     
     private Drawable getRippleDrawable() {
