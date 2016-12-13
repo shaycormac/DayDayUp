@@ -36,6 +36,10 @@
         <activity
             android:name=".activity.LayoutTestActivity"
             android:label="@string/title_activity_layout_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ViewStubTestActivity"
+            android:label="@string/title_activity_view_stub_test"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

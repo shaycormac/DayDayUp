@@ -4,4 +4,5 @@
     <string name="title_activity_test_intent_service">TestIntentServiceActivity</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="title_activity_layout_test">LayoutTestActivity</string>
+    <string name="title_activity_view_stub_test">ViewStubTestActivity</string>
 </resources>
