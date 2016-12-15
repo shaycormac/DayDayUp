@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ToggleButton;
 
 import com.example.somemyidea.R;
+import com.example.somemyidea.utils.StringBufferUtils;
 
 public class MainActivity extends AppCompatActivity {
     private Button btnTotast;
@@ -32,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, StringBufferUtils.contactObjectToString("我是",10," 哈哈",20.5,true,20f), Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,LayoutTestActivity.class));  
+                startActivity(new Intent(MainActivity.this,SingleItemRecycleViewActivity.class));  
             }
         });
     }

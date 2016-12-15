@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_margin="5dp"
+app:cardBackgroundColor="@color/cardview_light_background"
+app:cardCornerRadius="1dp">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="5dp" >
+
+    <ImageView
+        android:id="@+id/chat_send_icon"
+        android:src="@drawable/xiaohei"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop" />
+
+    <TextView
+        android:id="@+id/chat_send_name"
+        android:text="小黑"
+        android:textSize="18sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:textColor="#212121" />
+
+    <TextView
+        android:id="@+id/chat_send_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="50dp"
+        android:background="@color/cardview_light_background"
+        android:text="有大吗。。。"
+        android:textSize="18sp"
+        android:textColor="#000"
+        android:gravity="center_vertical"
+        android:focusable="true"
+        android:clickable="true"
+        android:lineSpacingExtra="2dp" />
+</LinearLayout>
+</android.support.v7.widget.CardView>

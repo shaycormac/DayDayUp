@@ -36,6 +36,14 @@
         <activity
             android:name=".activity.LayoutTestActivity"
             android:label="@string/title_activity_layout_test"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ItemTouchHelperActivity"
+            android:label="@string/title_activity_item_touch_helper"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.SingleItemRecycleViewActivity"
+            android:label="@string/title_activity_single_item_recycle_view"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
