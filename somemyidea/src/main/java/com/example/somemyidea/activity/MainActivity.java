@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckedTextView;
 import android.widget.ToggleButton;
 
 import com.example.somemyidea.R;
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnTotast;
     private Button btnIntentService;
     private ToggleButton toggleButton;
+    private CheckedTextView checkedTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
         btnTotast = (Button) findViewById(R.id.btnTotast);
         btnIntentService = (Button) findViewById(R.id.btnIntentService);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
+        checkedTextView = (CheckedTextView) findViewById(R.id.checkedTextView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -60,6 +63,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,SingleItemRecycleViewActivity.class));  
+            }
+        });
+        checkedTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ViewStubTestActivity.class));
             }
         });
     }

@@ -6,4 +6,5 @@
     <string name="title_activity_layout_test">LayoutTestActivity</string>
     <string name="title_activity_item_touch_helper">ItemTouchHelperActivity</string>
     <string name="title_activity_single_item_recycle_view">SingleItemRecycleViewActivity</string>
+    <string name="title_activity_view_stub_test">ViewStubTestActivity</string>
 </resources>

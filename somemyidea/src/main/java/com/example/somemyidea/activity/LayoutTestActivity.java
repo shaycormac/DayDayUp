@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.somemyidea.R;
 
@@ -20,18 +19,24 @@ public class LayoutTestActivity extends AppCompatActivity {
     ImageView imageView1;
     ImageView imageView2;
 
+    TextView textView;
+    ImageView imageView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_layout_test);
-        view1 = findViewById(R.id.lay1);
+       /* view1 = findViewById(R.id.lay1);
         view2 = findViewById(R.id.lay2);
         textView1 = (TextView) view1.findViewById(R.id.tvTextView);
         textView2 = (TextView) view2.findViewById(R.id.tvTextView);
         imageView1 = (ImageView) view1.findViewById(R.id.ivImg);
         imageView2 = (ImageView) view2.findViewById(R.id.ivImg);
         textView1.setText("我是1");
-        textView2.setText("我是2");
+        textView2.setText("我是2");*/
+        textView = (TextView) findViewById(R.id.tvTextView);
+        textView.setText("我是1");
+        imageView = (ImageView) findViewById(R.id.ivImg);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -43,10 +48,10 @@ public class LayoutTestActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        bindListener();
+     //   bindListener();
     }
 
-    private void bindListener()
+  /*  private void bindListener()
     {
         textView1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +77,6 @@ public class LayoutTestActivity extends AppCompatActivity {
                 Toast.makeText(LayoutTestActivity.this, "2被点击", Toast.LENGTH_SHORT).show();
             }
         });
-    }
+    }*/
 
 }
