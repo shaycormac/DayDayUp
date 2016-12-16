@@ -3,13 +3,14 @@ package com.example.somemyidea.widget.recycleviewadapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.text.util.Linkify;
-import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.somemyidea.widget.recycleviewitemtouch.ItemTouchHelperViewHolder;
+
 /**
  * @author 作者：Shay-Patrick-Cormac
  * @datetime 创建时间：2016-12-15 10:02 GMT+8
@@ -27,9 +30,9 @@ import android.widget.TextView;
  * @content 说明：RecycleView通用adapter的viewholder。
  * 通用的View，对于不同的ItemType没有办法确定创建哪些成员变量View，取而代之的只能是个集合来存储了。
  */
-public class ViewHolder extends RecyclerView.ViewHolder 
+public class ViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder
 {
-    private SparseArray<View> views;
+    private SparseArrayCompat<View> views;
     private View convertView;
     private Context context;
     public ViewHolder(Context context, View itemView) 
@@ -37,7 +40,7 @@ public class ViewHolder extends RecyclerView.ViewHolder
         super(itemView);
         this.context = context;
         convertView = itemView;
-        views = new SparseArray<>();
+        views = new SparseArrayCompat<>();
     }
     //获取布局
     public static ViewHolder createViewHolder(Context context,ViewGroup parent,int layoutId)
@@ -257,4 +260,16 @@ public class ViewHolder extends RecyclerView.ViewHolder
         return this;
     }
 
+    //继承,默认给予选择，不予暴露？？？
+    @Override
+    public void onItemSelected() 
+    {
+        convertView.setBackgroundColor(Color.LTGRAY);
+    }
+
+    @Override
+    public void onItemClear() 
+    {
+        convertView.setBackgroundColor(0);
+    }
 }

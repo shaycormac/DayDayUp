@@ -9,23 +9,32 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.helper.ItemTouchHelper;
+import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.somemyidea.R;
 import com.example.somemyidea.entity.ChatMessage;
 import com.example.somemyidea.utils.StringBufferUtils;
+import com.example.somemyidea.widget.CustomDialog;
+import com.example.somemyidea.widget.recycleviewadapter.CommonAdapter;
 import com.example.somemyidea.widget.recycleviewadapter.MultiItemTypeSupport;
-import com.example.somemyidea.widget.recycleviewadapter.SectionAdapter;
 import com.example.somemyidea.widget.recycleviewadapter.SectionSupport;
 import com.example.somemyidea.widget.recycleviewadapter.ViewHolder;
+import com.example.somemyidea.widget.recycleviewitemtouch.ItemTouchHelperCallback;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class SingleItemRecycleViewActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<String> strings = new ArrayList<>();
     private List<ChatMessage> chatMessageList = new ArrayList<>();
+
+    //滑动，拖动
+    private ItemTouchHelper itemTouchHelper;
+    private CommonAdapter<String> commonAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,18 +93,59 @@ public class SingleItemRecycleViewActivity extends AppCompatActivity {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setLayoutManager(linearLayoutManager);
         initArrays();
-       /* recyclerView.setAdapter(new CommonAdapter<String>(this,R.layout.item_touch_helper_layout,strings) 
-        {
+        commonAdapter = new CommonAdapter<String>(this, R.layout.item_touch_helper_layout, strings) {
 
             @Override
-            public void convert(ViewHolder holder, String s) 
-            {
-                holder.setText(R.id.text, s);
-                
+            public boolean onItemMove(int fromPosition, int toPosition) {
+
+                //互换列表种指定位置的数据（之前需要改变list的数据位置，这个不需要么？？）
+                Collections.swap(strings, fromPosition, toPosition);
+                notifyItemMoved(fromPosition, toPosition);
+                return true;
             }
-        });*/
+
+            @Override
+            public void onItemDismiss(final int position)
+            {
+                new CustomDialog.Builder(SingleItemRecycleViewActivity.this).setMessage("确定要删除么？")
+                        .setPositiveButton("确定", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                strings.remove(position);
+                                notifyItemRemoved(position);
+                            }
+                        }).setNegativeButton("取消", new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) 
+                    {
+                        //todo bug已经删除鸟~
+                        notifyItemChanged(position);
+                    }
+                }).createDialog().show();
+                //伪代码
+              /*  if ("需要删除")
+                {
+                    notifyItemRemoved(position);
+                }else 
+                {
+                    notifyItemChanged(position);
+                }*/
+               
+            }
+
+            @Override
+            public void convert(ViewHolder holder, String s) {
+                holder.setText(R.id.text, s);
+
+            }
+        };
+        recyclerView.setAdapter(commonAdapter);
+        // 创建ItemTouchHelper对象，然后调用attachToRecyclerView(RecyclerView) 方法
+        ItemTouchHelperCallback itemTouchHelperCallback = new ItemTouchHelperCallback(commonAdapter);
+        itemTouchHelper = new ItemTouchHelper(itemTouchHelperCallback);
+        itemTouchHelper.attachToRecyclerView(recyclerView);
         chatMessageList.addAll(ChatMessage.MOCK_DATAS);
        /* recyclerView.setAdapter(new MultiItemCommonAdapter<ChatMessage>(this,chatMessageList,multiItemTypeSupport) 
         {
@@ -119,8 +169,18 @@ public class SingleItemRecycleViewActivity extends AppCompatActivity {
                 
             }
         });*/
-        recyclerView.setAdapter(new SectionAdapter<ChatMessage>(this,chatMessageList,sectionSupport,R.layout.main_chat_from_msg) 
+      /*  recyclerView.setAdapter(new SectionAdapter<ChatMessage>(this,chatMessageList,sectionSupport,R.layout.main_chat_from_msg) 
         {
+
+            @Override
+            public boolean onItemMove(int fromPosition, int toPosition) {
+                return false;
+            }
+
+            @Override
+            public void onItemDismiss(int position) {
+
+            }
 
             @Override
             public void convert(ViewHolder holder, ChatMessage chatMessage) 
@@ -130,7 +190,7 @@ public class SingleItemRecycleViewActivity extends AppCompatActivity {
                 holder.setImageResource(R.id.chat_from_icon, chatMessage.icon);
                 
             }
-        });
+        });*/
         
     }
 
@@ -141,4 +201,14 @@ public class SingleItemRecycleViewActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) 
+    {
+        if (keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            //todo 阻止取消dialog
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }
