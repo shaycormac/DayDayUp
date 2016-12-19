@@ -1,20 +1,27 @@
 package com.example.somemyidea.activity;
 
 import android.animation.Animator;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckedTextView;
+import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.somemyidea.R;
+import com.example.somemyidea.utils.DensityUtil;
 import com.example.somemyidea.utils.StringBufferUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,12 +29,15 @@ public class MainActivity extends AppCompatActivity {
     private Button btnIntentService;
     private ToggleButton toggleButton;
     private CheckedTextView checkedTextView;
+    private AppCompatActivity appCompatActivity;
+    private Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        appCompatActivity = this;
         btnTotast = (Button) findViewById(R.id.btnTotast);
         btnIntentService = (Button) findViewById(R.id.btnIntentService);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
@@ -69,17 +79,52 @@ public class MainActivity extends AppCompatActivity {
 
     private void bindListener()
     {
-        btnTotast.setOnClickListener(new View.OnClickListener() {
+        btnTotast.setOnClickListener(new View.OnClickListener() 
+        {
             @Override
             public void onClick(View v) 
             {
                 //Circular Reveal
-                Animator animator = createAnimator(v);
+                /*Animator animator = createAnimator(v);
                 if (animator!=null)
-                    animator.start();
+                    animator.start();*/
               //  startActivity(new Intent(MainActivity.this,ToastActivity.class));
+                View view = LayoutInflater.from(appCompatActivity).inflate(R.layout.dialog_quit_upload, null);
+                TextView tv_quit_upload = (TextView) view.findViewById(R.id.tv_dialog_quit_upload);
+                TextView tv_quit_cancle = (TextView) view.findViewById(R.id.tv_dialog_quit_cancle);
+                if (dialog==null)
+                    dialog = new Dialog(appCompatActivity, R.style.dialog);
+                dialog.show();
+                WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+                lp.width = DensityUtil.getDisplayMetrics(appCompatActivity).widthPixels - DensityUtil.dip2px(appCompatActivity, 24f);
+              //  lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                //重新获取到底部的距离，大于0位于基础之上，小于0位于之下。
+                lp.y = DensityUtil.dip2px(appCompatActivity, 12f);
+                Window window = dialog.getWindow();
+                window.setAttributes(lp);
+                window.setContentView(view);
+                window.setGravity(Gravity.BOTTOM);
+                dialog.setCanceledOnTouchOutside(true);
+                tv_quit_cancle.setOnClickListener(new View.OnClickListener() 
+                {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.cancel();
+                    }
+                });
+
+                tv_quit_upload.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v) {
+                        setResult(RESULT_CANCELED);
+                        finish();
+                    }
+                });
+
             }
         });
+            
         
         btnIntentService.setOnClickListener(new View.OnClickListener() {
             @Override
