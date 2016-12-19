@@ -8,20 +8,15 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckedTextView;
-import android.widget.TextView;
 import android.widget.ToggleButton;
 
 import com.example.somemyidea.R;
-import com.example.somemyidea.utils.DensityUtil;
+import com.example.somemyidea.rxjava.RxjavaActivity;
 import com.example.somemyidea.utils.StringBufferUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -88,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
                 /*Animator animator = createAnimator(v);
                 if (animator!=null)
                     animator.start();*/
-              //  startActivity(new Intent(MainActivity.this,ToastActivity.class));
-                View view = LayoutInflater.from(appCompatActivity).inflate(R.layout.dialog_quit_upload, null);
+             
+               /* View view = LayoutInflater.from(appCompatActivity).inflate(R.layout.dialog_quit_upload, null);
                 TextView tv_quit_upload = (TextView) view.findViewById(R.id.tv_dialog_quit_upload);
                 TextView tv_quit_cancle = (TextView) view.findViewById(R.id.tv_dialog_quit_cancle);
                 if (dialog==null)
@@ -97,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
                 WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
                 lp.width = DensityUtil.getDisplayMetrics(appCompatActivity).widthPixels - DensityUtil.dip2px(appCompatActivity, 24f);
-              //  lp.height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 //重新获取到底部的距离，大于0位于基础之上，小于0位于之下。
                 lp.y = DensityUtil.dip2px(appCompatActivity, 12f);
                 Window window = dialog.getWindow();
@@ -121,7 +115,8 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                     }
                 });
-
+*/
+                  startActivity(new Intent(MainActivity.this,RxjavaActivity.class));
             }
         });
             
