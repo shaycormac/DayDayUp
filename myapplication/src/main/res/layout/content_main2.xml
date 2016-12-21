@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/content_main2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.myapplication.Main2Activity"
+    tools:context="com.example.myapplication.activity.Main2Activity"
     tools:showIn="@layout/activity_main2">
     <android.support.design.widget.TextInputLayout
         android:id="@+id/textInput"
@@ -18,5 +20,29 @@
             android:layout_height="wrap_content"
             android:textColor="@android:color/black"/>
     </android.support.design.widget.TextInputLayout>
-
-</RelativeLayout>
+    <com.example.myapplication.widget.TasksCompletedView
+        android:layout_marginTop="20dp"
+        android:id="@+id/tasks_view"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:radius="20dp"
+        app:strokeWidth="5dp"
+        app:circleColor="@color/colorAccent"
+        app:ringColor="@color/colorPrimaryDark"/>
+    <android.support.v7.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="測試"
+        android:layout_marginTop="20dp"
+        android:id="@+id/button1"/>
+    <com.example.myapplication.widget.CirclePercentView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/circleView"
+        app:percent="0"
+        app:bigColor="#99ea5504"
+        app:smallColor="#ffffff"
+        app:centerTextSize="16sp"
+        app:stripeWidth="25dp"
+        app:radiusCircle="100dp"/>
+</LinearLayout>

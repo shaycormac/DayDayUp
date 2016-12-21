@@ -1,4 +1,4 @@
-package com.example.myapplication;
+package com.example.myapplication.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.android.debug.hv.ViewServer;
+import com.example.myapplication.R;
 
 public class MainActivity extends AppCompatActivity {
 
