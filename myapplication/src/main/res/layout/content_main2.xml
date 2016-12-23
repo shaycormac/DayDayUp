@@ -43,6 +43,7 @@
         app:bigColor="#99ea5504"
         app:smallColor="#ffffff"
         app:centerTextSize="16sp"
-        app:stripeWidth="25dp"
+        app:stripeWidth="15dp"
+        app:textShuo="哈哈"
         app:radiusCircle="100dp"/>
 </LinearLayout>

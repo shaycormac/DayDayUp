@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.myapplication.R;
+import com.example.myapplication.utils.DensityUtil;
 import com.example.myapplication.widget.CirclePercentView;
 import com.example.myapplication.widget.TasksCompletedView;
 
@@ -55,6 +56,8 @@ public class Main2Activity extends AppCompatActivity {
         params.width = (int) (0.9 * widthPixels);
         params.height = (int) (0.9 * widthPixels);
         mCirclePercentView.setLayoutParams(params);*/
+        mCirclePercentView.setTextSize(DensityUtil.sp2px(this,40));
+        mCirclePercentView.setText("已移除！！");
         mButton = (Button) findViewById(R.id.button1);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

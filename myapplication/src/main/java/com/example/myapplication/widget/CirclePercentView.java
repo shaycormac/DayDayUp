@@ -1,16 +1,18 @@
  package com.example.myapplication.widget;
 
  import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.AttributeSet;
-import android.view.View;
+ import android.content.res.TypedArray;
+ import android.graphics.Canvas;
+ import android.graphics.Color;
+ import android.graphics.Paint;
+ import android.graphics.Rect;
+ import android.graphics.RectF;
+ import android.text.TextPaint;
+ import android.util.AttributeSet;
+ import android.view.View;
 
-import com.example.myapplication.R;
-import com.example.myapplication.utils.PxUtils;
+ import com.example.myapplication.R;
+ import com.example.myapplication.utils.PxUtils;
 
 
  /**一个圆形百分比进度 View
@@ -49,6 +51,13 @@ public class CirclePercentView extends View {
      private Paint smallCirclePaint;
      private Paint textPaint;
      private RectF oval;
+     //最下面的文字
+     private Paint textUnderLine;
+     //文字的长度的高度
+     private int texHeight;
+     private int texWidth;
+     private Rect drawText;
+     private String textShuo;
 
      public CirclePercentView(Context context) {
         this(context, null);
@@ -70,6 +79,7 @@ public class CirclePercentView extends View {
             mBigColor = a.getColor(R.styleable.CirclePercentView_bigColor, 0xff6950a1);
             mCenterTextSize = a.getDimensionPixelSize(R.styleable.CirclePercentView_centerTextSize, PxUtils.spToPx(20, context));
             mRadius = a.getDimensionPixelSize(R.styleable.CirclePercentView_radiusCircle, PxUtils.dpToPx(80, context));
+            textShuo = a.getString(R.styleable.CirclePercentView_textShuo);
             a.recycle();
         }
         initVariable();
@@ -111,7 +121,14 @@ public class CirclePercentView extends View {
 
         /* Paint.FontMetrics fm =textPaint.getFontMetrics();
          mTxtHeight = (int) Math.ceil(fm.descent - fm.ascent);*/
-
+         textUnderLine = new TextPaint();
+         textUnderLine.setTextSize(60f);
+         textUnderLine.setColor(Color.BLUE);
+         drawText = new Rect();
+         textUnderLine.getTextBounds(textShuo, 0, textShuo.length(), drawText);
+        /* Paint.FontMetrics fontMetrics = textUnderLine.getFontMetrics();
+         texHeight= (int) Math.ceil(fontMetrics.descent - fontMetrics.ascent);*/
+         
      }
 
     @Override
@@ -165,6 +182,10 @@ public class CirclePercentView extends View {
 
         textPaint.setColor(Color.WHITE);
         canvas.drawText(text, x - textLength/2, y, textPaint);
+        //画一个矩形，再画文字
+        canvas.drawRect(x-mRadius/2,(float) (y+0.67*mRadius),x+mRadius/2,(float)(y+1.07*mRadius),textPaint);
+
+        canvas.drawText(textShuo, x - drawText.width() / 2,(float)( y + 0.86 * mRadius + drawText.height() / 2), textUnderLine);
 
 
     }
@@ -206,7 +227,22 @@ public class CirclePercentView extends View {
         }).start();
 
     }
+     
+     public void setTextSize(int floatSize)
+     {
+        /* if (textPaint!=null)
+         {
+             textPaint.setTextSize(floatSize);
+             
+         }*/
+         mCenterTextSize = floatSize;
+        postInvalidate();
+     }
     
-
+   public void setText(String text)
+   {
+       textShuo = text;
+       postInvalidate();
+   }
 
 }

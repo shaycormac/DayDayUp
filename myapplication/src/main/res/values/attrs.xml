@@ -18,6 +18,7 @@
         <!--中间字体颜色-->
         <attr name="centerTextSize" format="dimension"/>
         <!--色带宽度-->
+        <attr name="textShuo" format="string"/>
     </declare-styleable>
     
     
