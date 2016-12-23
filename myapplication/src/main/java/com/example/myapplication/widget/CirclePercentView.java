@@ -8,6 +8,7 @@
  import android.graphics.Rect;
  import android.graphics.RectF;
  import android.text.TextPaint;
+ import android.text.TextUtils;
  import android.util.AttributeSet;
  import android.view.View;
 
@@ -184,7 +185,14 @@ public class CirclePercentView extends View {
         canvas.drawText(text, x - textLength/2, y, textPaint);
         //画一个矩形，再画文字
         canvas.drawRect(x-mRadius/2,(float) (y+0.67*mRadius),x+mRadius/2,(float)(y+1.07*mRadius),textPaint);
-
+        //考虑文字长度大于矩形长度
+        textUnderLine.getTextBounds(textShuo, 0, textShuo.length(), drawText);
+        if (drawText.width() > mRadius) 
+        {
+            TextPaint mPaint = new TextPaint(textUnderLine);
+            String msg = TextUtils.ellipsize(textShuo, mPaint, mRadius, TextUtils.TruncateAt.END).toString();
+            canvas.drawText(msg, x - drawText.width() / 2,(float)( y + 0.86 * mRadius + drawText.height() / 2), mPaint);
+        }else
         canvas.drawText(textShuo, x - drawText.width() / 2,(float)( y + 0.86 * mRadius + drawText.height() / 2), textUnderLine);
 
 
