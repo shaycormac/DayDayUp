@@ -44,6 +44,5 @@
         app:smallColor="#ffffff"
         app:centerTextSize="16sp"
         app:stripeWidth="15dp"
-        app:textShuo="哈哈"
         app:radiusCircle="100dp"/>
 </LinearLayout>

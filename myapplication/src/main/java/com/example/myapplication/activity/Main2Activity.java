@@ -57,7 +57,7 @@ public class Main2Activity extends AppCompatActivity {
         params.height = (int) (0.9 * widthPixels);
         mCirclePercentView.setLayoutParams(params);*/
         mCirclePercentView.setTextSize(DensityUtil.sp2px(this,40));
-        mCirclePercentView.setText("已移除！！hahahhhshshhs");
+       // mCirclePercentView.setText("已移除！！");
         mButton = (Button) findViewById(R.id.button1);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

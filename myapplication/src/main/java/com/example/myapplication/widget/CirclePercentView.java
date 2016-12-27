@@ -7,6 +7,7 @@
  import android.graphics.Paint;
  import android.graphics.Rect;
  import android.graphics.RectF;
+ import android.os.Build;
  import android.text.TextPaint;
  import android.text.TextUtils;
  import android.util.AttributeSet;
@@ -126,6 +127,7 @@ public class CirclePercentView extends View {
          textUnderLine.setTextSize(60f);
          textUnderLine.setColor(Color.BLUE);
          drawText = new Rect();
+         if (!TextUtils.isEmpty(textShuo))
          textUnderLine.getTextBounds(textShuo, 0, textShuo.length(), drawText);
         /* Paint.FontMetrics fontMetrics = textUnderLine.getFontMetrics();
          texHeight= (int) Math.ceil(fontMetrics.descent - fontMetrics.ascent);*/
@@ -165,14 +167,14 @@ public class CirclePercentView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
 
-        int mEndAngle = (int) (mCurPercent * 3.6);
+        int mEndAngle = mCurPercent * 3;
         //画大圆
         canvas.drawCircle(x, y, mRadius, bigCirclePaint);
          //划弧度的正切矩形(在重新测量之后使用)
         oval.right = mRadius* 2- oval.left;
         oval.bottom = mRadius*2- oval.top;
         //画弧度
-        canvas.drawArc(oval, 180, mEndAngle, false, sectorPaint);
+        canvas.drawArc(oval, 120, mEndAngle, false, sectorPaint);
         //画小圆
         canvas.drawCircle(x, y, mRadius - mStripeWidth, smallCirclePaint);
        
@@ -184,16 +186,21 @@ public class CirclePercentView extends View {
         textPaint.setColor(Color.WHITE);
         canvas.drawText(text, x - textLength/2, y, textPaint);
         //画一个矩形，再画文字
-        canvas.drawRect(x-mRadius/2,(float) (y+0.67*mRadius),x+mRadius/2,(float)(y+1.07*mRadius),textPaint);
-        //考虑文字长度大于矩形长度
-        textUnderLine.getTextBounds(textShuo, 0, textShuo.length(), drawText);
-        if (drawText.width() > mRadius) 
-        {
-            TextPaint mPaint = new TextPaint(textUnderLine);
-            String msg = TextUtils.ellipsize(textShuo, mPaint, mRadius, TextUtils.TruncateAt.END).toString();
-            canvas.drawText(msg, x - drawText.width() / 2,(float)( y + 0.86 * mRadius + drawText.height() / 2), mPaint);
+      //  canvas.drawRoundRect(x-mRadius/2, y+9*mRadius/14,x+mRadius/2,y+15*mRadius/13,8,8,textPaint);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            canvas.drawRoundRect(x-mRadius/2, y+9*mRadius/14,x+mRadius/2,y+15*mRadius/13,8f,8f,textPaint);
         }else
-        canvas.drawText(textShuo, x - drawText.width() / 2,(float)( y + 0.86 * mRadius + drawText.height() / 2), textUnderLine);
+            canvas.drawRect(x-mRadius/2, y+9*mRadius/14,x+mRadius/2,y+15*mRadius/13,textPaint);
+        //考虑文字长度大于矩形长度
+        if (!TextUtils.isEmpty(textShuo)) {
+            textUnderLine.getTextBounds(textShuo, 0, textShuo.length(), drawText);
+            if (drawText.width() > mRadius) {
+                TextPaint mPaint = new TextPaint(textUnderLine);
+                String msg = TextUtils.ellipsize(textShuo, mPaint, mRadius, TextUtils.TruncateAt.END).toString();
+                canvas.drawText(msg, x - drawText.width() / 2, y - drawText.height() / 2 + mRadius, mPaint);
+            } else
+                canvas.drawText(textShuo, x - drawText.width() / 2, y - drawText.height() / 2 + mRadius, textUnderLine);
+        }
 
 
     }
