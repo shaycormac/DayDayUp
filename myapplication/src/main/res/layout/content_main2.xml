@@ -40,14 +40,23 @@
         android:text="測試"
         android:layout_marginTop="20dp"
         android:id="@+id/button1"/>
-    <com.example.myapplication.widget.CirclePercentView
+    <FrameLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/circleView"
-        app:percent="0"
-        app:bigColor="#99ea5504"
-        app:smallColor="#ffffff"
-        app:centerTextSize="16sp"
-        app:stripeWidth="15dp"
-        app:radiusCircle="100dp"/>
+        android:layout_height="wrap_content">
+        <com.example.myapplication.widget.CirclePercentView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/circleView"
+            app:bigColor="#cccccc"
+            app:smallColor="#ffffff"
+            app:arcColor="#61bf7b"
+            app:stripeWidth="15dp"
+            app:radiusCircle="100dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/tvAV"/>
+    </FrameLayout>
+    
 </LinearLayout>
