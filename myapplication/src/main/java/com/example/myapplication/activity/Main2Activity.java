@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.utils.DensityUtil;
@@ -30,6 +31,7 @@ public class Main2Activity extends AppCompatActivity {
     private Button mButton;
     private CirclePercentView mCirclePercentView;
     private TextView tvAV;
+    private ImageView imgTest;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -74,6 +76,8 @@ public class Main2Activity extends AppCompatActivity {
                // mTasksView.setProgress(n);
             }
         });
+        imgTest = (ImageView) findViewById(R.id.imgTest);
+        imgTest.setImageResource(0);
     }
 
     private void initInputLayout() 
