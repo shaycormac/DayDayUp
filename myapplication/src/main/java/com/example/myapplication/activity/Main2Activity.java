@@ -1,5 +1,6 @@
 package com.example.myapplication.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,9 +12,11 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.utils.DensityUtil;
+import com.example.myapplication.utils.SpanUtils;
 import com.example.myapplication.widget.CirclePercentView;
 import com.example.myapplication.widget.TasksCompletedView;
 
@@ -26,6 +29,7 @@ public class Main2Activity extends AppCompatActivity {
 
     private Button mButton;
     private CirclePercentView mCirclePercentView;
+    private TextView tvAV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -51,13 +55,16 @@ public class Main2Activity extends AppCompatActivity {
       //  new Thread(new ProgressRunable()).start();
 
         mCirclePercentView = (CirclePercentView) findViewById(R.id.circleView);
+        tvAV = (TextView) findViewById(R.id.tvAV);
        /* int widthPixels = DensityUtil.getDisplayMetrics(this).widthPixels;
        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mCirclePercentView.getLayoutParams();
         params.width = (int) (0.9 * widthPixels);
         params.height = (int) (0.9 * widthPixels);
         mCirclePercentView.setLayoutParams(params);*/
-        mCirclePercentView.setTextSize(DensityUtil.sp2px(this,40));
-       // mCirclePercentView.setText("已移除！！");
+       // mCirclePercentView.setTextSize(DensityUtil.sp2px(this,40));
+        tvAV.setText(SpanUtils.spanCredit(this,"180/","120"));
+        mCirclePercentView.setTextTips("已移除！", Color.BLACK, Color.RED,DensityUtil.sp2px(this,18f));
+        mCirclePercentView.setPercent(0);
         mButton = (Button) findViewById(R.id.button1);
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override

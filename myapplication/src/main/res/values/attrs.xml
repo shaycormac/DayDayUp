@@ -11,14 +11,10 @@
         <attr name="radiusCircle" format="dimension"/>
         <attr name="stripeWidth" format="dimension"/><!--色带宽度-->
         <attr name="percent" format="integer"/><!--百分比 最大值为100-->
-        <attr name="smallColor" format="color"/><!--色带宽度-->
+        <attr name="arcColor" format="color"/><!--色带宽度-->
+        <attr name="smallColor" format="color"/><!--小圆颜色-->
         <!--外圈颜色-->
         <attr name="bigColor" format="color"/>
-
-        <!--中间字体颜色-->
-        <attr name="centerTextSize" format="dimension"/>
-        <!--色带宽度-->
-        <attr name="textShuo" format="string"/>
     </declare-styleable>
     
     
