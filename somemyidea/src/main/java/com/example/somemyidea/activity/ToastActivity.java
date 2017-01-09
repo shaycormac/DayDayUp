@@ -60,7 +60,7 @@ public class ToastActivity extends AppCompatActivity {
         show.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ToastUtils.getInstance().showToast("试一试",ToastActivity.this);
+                ToastUtils.getInstance().showToast(ToastActivity.this,"试一试");
             }
         });
 
