@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -141,7 +142,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity {
                 itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ToastUtils.getInstance().showToast(StringBufferUtils.contactObjectToString(getLayoutPosition()," =text= ",mItems.get(getLayoutPosition())),getApplicationContext());
+                        ToastUtils.getInstance().showToast(getApplicationContext(), TextUtils.concat(""+getLayoutPosition()," =text= ",""+mItems.get(getLayoutPosition())));
                     }
                 });
             }

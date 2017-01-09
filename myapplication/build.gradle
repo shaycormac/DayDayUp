@@ -31,5 +31,5 @@ dependencies {
     compile 'com.android.support:design:22.2.0'
     testCompile 'junit:junit:4.12'
     //解决真机不能调试Hierarchy Viewer的问题，在需要调试的xml对应的activity添加三个方法即可
-    compile 'com.hanhuy.android:viewserver:1.0.3'
+    //compile 'com.hanhuy.android:viewserver:1.0.3'
 }
