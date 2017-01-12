@@ -6,7 +6,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import android.widget.ImageView;
+
 import com.example.myapplication.R;
+import com.example.myapplication.utils.StatusBarUtil;
 
 /**
  * 测试hierarchy view 树型图
@@ -24,5 +27,8 @@ public class Main3Activity extends AppCompatActivity {
                 startActivity(new Intent(Main3Activity.this, AnimationActivity.class));
             }
         });
+        View llLayout=findViewById(R.id.activity_main3);
+       ImageView imageView = (ImageView) findViewById(R.id.imgStatusBar);
+        StatusBarUtil.setTranslucentForImageView(this,llLayout);
     }
 }
