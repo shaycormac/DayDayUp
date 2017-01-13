@@ -10,6 +10,10 @@ import android.widget.TextView;
 import com.example.designpatterstudy.abstractFactoryDesign.InternetRequestCallback;
 import com.example.designpatterstudy.abstractFactoryDesign.InternetRequestManager;
 import com.example.designpatterstudy.abstractFactoryDesign.RequestFactory;
+import com.example.designpatterstudy.factoryMethodPattern.AppleFactory;
+import com.example.designpatterstudy.factoryMethodPattern.BananaFactory;
+import com.example.designpatterstudy.factoryMethodPattern.InterfaceFactory;
+import com.example.designpatterstudy.simpleFactoryPattern.Fruit;
 import com.example.designpatterstudy.widget.NumberAnimation;
 import com.example.designpatterstudy.widget.RuningNumView;
 
@@ -94,6 +98,17 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, TextUtils.indexOf("Hello world!", "Hello") + "");
         //截取字符串（左闭右开）
         Log.d(TAG, TextUtils.substring("Hello world!", 0, 5));
-       
+        
+        //工厂模式使用
+        //先得到具体的工厂
+        InterfaceFactory factory = new AppleFactory();
+        //工厂里已经生产好了水果对象
+        Fruit fruit = factory.createFruitFactory();
+        //水果对象执行具体的方法
+        fruit.getFruitName(1);
+        
+         factory = new BananaFactory();
+        fruit = factory.createFruitFactory();
+        fruit.getFruitName(2);
     }
 }
