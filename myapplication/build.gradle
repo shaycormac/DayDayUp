@@ -27,9 +27,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.0'
-    testCompile 'junit:junit:4.12'
     //解决真机不能调试Hierarchy Viewer的问题，在需要调试的xml对应的activity添加三个方法即可
     //compile 'com.hanhuy.android:viewserver:1.0.3'
+    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:support-v4:22.2.1'
+    testCompile 'junit:junit:4.12'
 }

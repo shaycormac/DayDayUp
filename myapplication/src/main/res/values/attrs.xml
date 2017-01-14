@@ -1,33 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="TasksCompletedView">
-        <attr name="radius" format="dimension"/>
-        <attr name="strokeWidth" format="dimension"/>
-        <attr name="circleColor" format="color"/>
-        <attr name="ringColor" format="color"/>
+        <attr name="radius" format="dimension" />
+        <attr name="strokeWidth" format="dimension" />
+        <attr name="circleColor" format="color" />
+        <attr name="ringColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="CirclePercentView">
-        <attr name="radiusCircle" format="dimension"/>
-        <attr name="stripeWidth" format="dimension"/><!--色带宽度-->
-        <attr name="percent" format="integer"/><!--百分比 最大值为100-->
-        <attr name="arcColor" format="color"/><!--色带宽度-->
-        <attr name="smallColor" format="color"/><!--小圆颜色-->
+        <attr name="radiusCircle" format="dimension" />
+        <attr name="stripeWidth" format="dimension" /><!--色带宽度-->
+        <attr name="percent" format="integer" /><!--百分比 最大值为100-->
+        <attr name="arcColor" format="color" /><!--色带宽度-->
+        <attr name="smallColor" format="color" /><!--小圆颜色-->
         <!--外圈颜色-->
-        <attr name="bigColor" format="color"/>
+        <attr name="bigColor" format="color" />
     </declare-styleable>
     <declare-styleable name="CircleImageView">
         <attr name="border_width" format="dimension" />
         <attr name="border_color" format="color" />
     </declare-styleable>
-    
-        <declare-styleable name="NiceSpinner">
-            <attr name="arrowTint" format="color" />
-            <attr name="hideArrow" format="boolean" />
-            <attr name="backgroundSelector" format="integer"/>
-            <attr name="textTint" format="color"/>
-        </declare-styleable>
-    
-    
-    
+
+    <declare-styleable name="NiceSpinner">
+        <attr name="arrowTint" format="color" />
+        <attr name="hideArrow" format="boolean" />
+        <attr name="backgroundSelector" format="integer" />
+        <attr name="textTint" format="color" />
+    </declare-styleable>
+
+    <!-- Declare custom theme attributes that allow changing which styles are
+         used for button bars depending on the API level.
+         ?android:attr/buttonBarStyle is new as of API 11 so this is
+         necessary to support previous API levels. -->
+    <declare-styleable name="ButtonBarContainerTheme">
+        <attr name="metaButtonBarStyle" format="reference" />
+        <attr name="metaButtonBarButtonStyle" format="reference" />
+    </declare-styleable>
+
+
 </resources>
