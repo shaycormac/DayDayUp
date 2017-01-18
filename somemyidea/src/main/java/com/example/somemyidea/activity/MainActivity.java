@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         checkedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ViewStubTestActivity.class));
+                startActivity(new Intent(MainActivity.this,ItemTouchHelperActivity.class));
             }
         });
     }
