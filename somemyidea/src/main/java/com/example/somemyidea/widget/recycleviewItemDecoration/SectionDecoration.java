@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextPaint;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
@@ -50,7 +51,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration
         textPaint.setColor(Color.DKGRAY);
         textPaint.setTextAlign(Paint.Align.LEFT);
         fontMetrics = new Paint.FontMetrics();
-        //悬浮栏的高度
+        //悬浮栏的高度(它是在某个View的上方)
         topGap = res.getDimensionPixelSize(R.dimen.sectioned_top);
         //文本显示的位置
         alignBottom = res.getDimensionPixelSize(R.dimen.section_alignBottom);
@@ -73,7 +74,7 @@ public class SectionDecoration extends RecyclerView.ItemDecoration
         if (pos==0|| isFirstInGroup(pos))
         {
             outRect.top = topGap;
-            if ("".equals(dataList.get(pos).getName()))
+            if(dataList.get(pos).getName()=="")
                 outRect.top = 0;
         }else
             outRect.top = 0;
@@ -104,9 +105,10 @@ public class SectionDecoration extends RecyclerView.ItemDecoration
         }
         
     }
-
+  //绘制矩形框
     @Override
-    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) 
+    {
         super.onDraw(c, parent, state);
         int left = parent.getPaddingLeft();
         int right = parent.getWidth() - parent.getPaddingRight();
@@ -117,7 +119,8 @@ public class SectionDecoration extends RecyclerView.ItemDecoration
         String textLine;
         float top;
         float bottom;
-        for (int i = 0; i < childCount; i++) {
+        for (int i = 0; i < childCount; i++) 
+        {
             //先获取当前的ziView
             view = parent.getChildAt(i);
             //根据子View获取所在的位置
@@ -127,23 +130,83 @@ public class SectionDecoration extends RecyclerView.ItemDecoration
             if ("-1".equals(groupId))
                 return;
             //获取字符串内容？？
-            textLine = callback.getGroupFirstLine(position);
-            if ("".equals(textLine)) {
+            textLine = callback.getGroupFirstLine(position).toUpperCase();
+            if (""==textLine) {
                 top = view.getTop();
-                bottom = view.getBottom();
+                bottom = view.getTop();
                 c.drawRect(left, top, right, bottom, paint);
             }else 
             {
+                //绘制于上方的矩形框
                 if (position==0 || isFirstInGroup(position))
                 {
+                    //绘制上方，Y轴越往上越小。
                     top = view.getTop() - topGap;
-                    bottom = view.getBottom();
+                    bottom = view.getTop();
                     //绘制悬浮栏
-                   // c.drawRect();
+                    c.drawRect(left,top-topGap,right,bottom,paint);
+                    //绘制文字
+                    c.drawText(textLine,left,bottom,textPaint);
+                    
                 }
             }
         }
     }
+
+    /**
+     * Draw any appropriate decorations into the Canvas supplied to the RecyclerView.
+     * Any content drawn by this method will be drawn after the item views are drawn
+     * and will thus appear over the views.
+     *
+     * @param c      Canvas to draw into
+     * @param parent RecyclerView this ItemDecoration is drawing into
+     * @param state  The current state of RecyclerView.
+     */
+    @Override
+    public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+        super.onDrawOver(c, parent, state);
+        int itemCount = state.getItemCount();
+        int childCount = parent.getChildCount();
+        int left = parent.getPaddingLeft();
+        int right = parent.getWidth() - parent.getPaddingRight();
+        float lineHeight = textPaint.getTextSize() + fontMetrics.descent;
+
+        String preGroupId ;
+        String groupId = "-1";
+        View view;
+        int position;
+        String textLine;
+        float top;
+        float bottom;
+        for (int i = 0; i < childCount; i++) 
+        {
+            view = parent.getChildAt(i);
+            position = parent.getChildAdapterPosition(view);
+            preGroupId = groupId;
+            groupId = callback.getGroupId(position);
+            if (groupId.equals("-1") || groupId.equals(preGroupId)) continue;
+            textLine = callback.getGroupFirstLine(position).toUpperCase();
+            if (TextUtils.isEmpty(textLine)) continue;
+
+            int viewBottom = view.getBottom();
+            float textY = Math.max(topGap, view.getTop());
+            //下一个和当前不一样移动当前
+            if (position + 1 < itemCount)
+            {
+                String nextGroupId = callback.getGroupId(position + 1);
+                //组内最后一个view进入了header
+                if (nextGroupId != groupId && viewBottom < textY) {
+                    textY = viewBottom;
+                }
+            }
+            //textY - topGap决定了悬浮栏绘制的高度和位置
+            c.drawRect(left, textY - topGap, right, textY, paint);
+            //left+2*alignBottom 决定了文本往左偏移的多少（加-->向左移）
+            //textY-alignBottom  决定了文本往右偏移的多少  (减-->向上移)
+            c.drawText(textLine, left + 2 * alignBottom, textY - alignBottom, textPaint);
+        }
+    }
+
 
     //定义一个接口用来外界调用
     public interface DecorationCallback
