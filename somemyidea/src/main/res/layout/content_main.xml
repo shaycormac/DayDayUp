@@ -65,6 +65,11 @@
         android:layout_height="wrap_content" />
     
 </android.support.design.widget.TextInputLayout>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" 
+        android:text="可以悬浮itemDecration"
+        android:id="@+id/btnRcvDecoration"/>
     
 
 </LinearLayout>

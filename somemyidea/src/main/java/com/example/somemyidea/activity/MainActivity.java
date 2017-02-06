@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private CheckedTextView checkedTextView;
     private AppCompatActivity appCompatActivity;
     private Dialog dialog;
+    private Button btnRcvDecoration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         btnIntentService = (Button) findViewById(R.id.btnIntentService);
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         checkedTextView = (CheckedTextView) findViewById(R.id.checkedTextView);
+        btnRcvDecoration = (Button) findViewById(R.id.btnRcvDecoration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -141,7 +143,13 @@ public class MainActivity extends AppCompatActivity {
         checkedTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this,ViewStubTestActivity.class));
+                startActivity(new Intent(MainActivity.this,ItemTouchHelperActivity.class));
+            }
+        });
+        btnRcvDecoration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,ItemDecorationActivity.class));
             }
         });
     }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MotionEventCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -79,8 +81,7 @@ public class ItemTouchHelperActivity extends AppCompatActivity {
     //设置adapter
     class TouchHelperAdapter extends RecyclerView.Adapter<TouchHelperAdapter.TouchViewHolder> implements ItemTouchHelperAdapter
     {
-
-
+        
         @Override
         public TouchViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
         {
@@ -92,6 +93,10 @@ public class ItemTouchHelperActivity extends AppCompatActivity {
         public void onBindViewHolder(final TouchViewHolder holder, int position) 
         {
             holder.textView.setText(mItems.get(position));
+            //设置动画
+            holder.itemView.setScaleX(0.8f);
+            holder.itemView.setScaleY(0.8f);
+            ViewCompat.animate(holder.itemView).scaleX(1.0f).scaleY(1.0f).setInterpolator(new OvershootInterpolator()).setDuration(350).start();
             holder.handleView.setOnTouchListener(new View.OnTouchListener() 
             {
                 @Override
@@ -130,11 +135,11 @@ public class ItemTouchHelperActivity extends AppCompatActivity {
 
         class TouchViewHolder extends RecyclerView.ViewHolder implements ItemTouchHelperViewHolder
         {
-            public TextView textView;
+            TextView textView;
 
-            public ImageView handleView;
+            ImageView handleView;
 
-            public TouchViewHolder(View itemView)
+            TouchViewHolder(View itemView)
             {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.text);

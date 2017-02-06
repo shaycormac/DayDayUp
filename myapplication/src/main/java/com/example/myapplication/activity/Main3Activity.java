@@ -28,6 +28,7 @@ public class Main3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main3);
         TextView textView = (TextView) findViewById(R.id.tvAndroid2);
         TextView tvAndroid1 = (TextView) findViewById(R.id.tvAndroid1);
+        TextView tvAnimationDrawable= (TextView) findViewById(R.id.tvAnimationDrawable);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +65,12 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(),MyActivity.class));
+            }
+        });
+        tvAnimationDrawable.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),ShowProgressActivity.class));
             }
         });
     }
