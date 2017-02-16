@@ -1,2 +1,2 @@
-include ':app', ':studybehavior', ':somemyidea', ':myapplication', ':designpatterstudy', ':studypermission', 'demo', 'android5.0',':customSpinner'
+include ':studybehavior', ':somemyidea', ':myapplication', ':designpatterstudy', ':studypermission', ':studyjs2webview', 'demo', 'android5.0', ':customSpinner'
 
