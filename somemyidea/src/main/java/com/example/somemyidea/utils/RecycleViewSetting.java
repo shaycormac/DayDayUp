@@ -10,7 +10,7 @@ import com.example.somemyidea.widget.recycleviewitemtouch.ItemTouchHelperCallbac
  * @author 作者：Shay-Patrick-Cormac
  * @datetime 创建时间：2016-12-16 10:44 GMT+8
  * @email 邮箱： 574583006@qq.com
- * @content 说明：RecycleView的初始化设置
+ * @content 说明：RecycleView的初始化设置,单例？？
  */
 public class RecycleViewSetting 
 {

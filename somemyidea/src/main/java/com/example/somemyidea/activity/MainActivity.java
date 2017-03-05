@@ -2,10 +2,12 @@ package com.example.somemyidea.activity;
 
 import android.animation.Animator;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -15,10 +17,12 @@ import android.view.animation.AccelerateInterpolator;
 import android.widget.Button;
 import android.widget.CheckedTextView;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.example.somemyidea.R;
 import com.example.somemyidea.rxjava.RxjavaActivity;
+import com.example.somemyidea.utils.EnumUtils;
 import com.example.somemyidea.utils.StringBufferUtils;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private Dialog dialog;
     private Button btnRcvDecoration;
     private FrameLayout flOnclickTest;
+    private Button btnAlertDialog;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -42,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButton = (ToggleButton) findViewById(R.id.toggleButton);
         checkedTextView = (CheckedTextView) findViewById(R.id.checkedTextView);
         btnRcvDecoration = (Button) findViewById(R.id.btnRcvDecoration);
+        btnAlertDialog = (Button) findViewById(R.id.btnAlertDialog);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -164,6 +171,44 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this,ItemDecorationActivity.class));
             }
         });
+        EnumUtils enumUtils = new EnumUtils();
+       // enumUtils.chooseEnum();
+        btnAlertDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                //生成AlerDialog
+                if (alertDialog==null)
+                 alertDialog = new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("我是标题")
+                        .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        }).setOnDismissListener(new DialogInterface.OnDismissListener() {
+                            @Override
+                            public void onDismiss(DialogInterface dialog) {
+                                Toast.makeText(MainActivity.this, "我是dismiss监听", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setOnCancelListener(new DialogInterface.OnCancelListener() {
+                            @Override
+                            public void onCancel(DialogInterface dialog) {
+                                Toast.makeText(MainActivity.this, "我是Cancel监听", Toast.LENGTH_SHORT).show();
+                            }
+                        }).setCancelable(true)
+                        .setTitle("标题啊")
+                        .create();
+                alertDialog.show();
+                
+            }
+        });
     }
     
     
@@ -179,5 +224,7 @@ public class MainActivity extends AppCompatActivity {
         return null;
 
     }
+
+   
 
 }
