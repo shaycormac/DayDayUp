@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.designpatterstudy.abstractFactoryDesign.InternetRequestCallback;
 import com.example.designpatterstudy.abstractFactoryDesign.InternetRequestManager;
 import com.example.designpatterstudy.abstractFactoryDesign.RequestFactory;
+import com.example.designpatterstudy.bridgePattern.BridgePatternStudy2;
 import com.example.designpatterstudy.factoryMethodPattern.AppleFactory;
 import com.example.designpatterstudy.factoryMethodPattern.BananaFactory;
 import com.example.designpatterstudy.factoryMethodPattern.InterfaceFactory;
@@ -110,5 +111,9 @@ public class MainActivity extends AppCompatActivity {
          factory = new BananaFactory();
         fruit = factory.createFruitFactory();
         fruit.getFruitName(2);
+        
+        //桥接模式
+        BridgePatternStudy2 study2 = new BridgePatternStudy2();
+        study2.main();
     }
 }

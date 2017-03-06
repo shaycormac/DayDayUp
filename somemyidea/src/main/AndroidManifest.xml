@@ -3,7 +3,7 @@
     package="com.example.somemyidea">
 
     <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:name=".activity.MyIdeaApplication"
@@ -48,7 +48,8 @@
             android:label="@string/title_activity_single_item_recycle_view"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".rxjava.RxjavaActivity" />
-        <activity android:name=".activity.ItemDecorationActivity"></activity>
+        <activity android:name=".activity.ItemDecorationActivity" />
+        <activity android:name=".activity.MuitRecycleViewActivity"></activity>
     </application>
 
 </manifest>

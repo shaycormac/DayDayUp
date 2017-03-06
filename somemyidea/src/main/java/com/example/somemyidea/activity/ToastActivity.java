@@ -1,6 +1,7 @@
 package com.example.somemyidea.activity;
 
 import android.os.Bundle;
+import android.support.annotation.StringDef;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.TextViewCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -17,15 +18,28 @@ import com.example.somemyidea.entity.City;
 import com.example.somemyidea.utils.ToastUtils;
 import com.example.somemyidea.widget.CustomTablayout;
 
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ToastActivity extends AppCompatActivity {
+    public static final String MONDAY = "monday";
+    public static final String THUSDAY = "thusday";
     private TextView cancel;
     private TextView show;
     FloatingActionButton fab;
     private CustomTablayout customTabLayout;
     private List<City> cityList = new ArrayList<>();
+    @StringDef({MONDAY,THUSDAY})
+    @Retention(RetentionPolicy.SOURCE)
+    public @interface WeekDays
+    {
+        
+    }
+
+    @WeekDays
+    String currentDay = MONDAY;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,5 +143,15 @@ public class ToastActivity extends AppCompatActivity {
             ToastUtils.getInstance().cancelToast();
 
         return super.onKeyDown(keyCode, event);
+    }
+    
+    public void setCurrentDay(@WeekDays String currentDay)
+    {
+        this.currentDay = currentDay;
+    }
+    @WeekDays
+    public String getCurrentDay()
+    {
+        return currentDay;
     }
 }

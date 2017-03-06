@@ -49,6 +49,32 @@
         android:layout_gravity="center_horizontal"
         android:padding="5dp"
         android:text="哈哈" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:text="云音乐动画"
+        android:gravity="center_vertical"
+        android:id="@+id/tvAnimationDrawable"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="同一方向滑动冲突未解决"
+        android:id="@+id/btnSlideConflict"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="同一方向滑动冲突父布局拦截"
+        android:id="@+id/btnSlideOne"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="同一方向滑动冲突子布局拦截"
+        android:id="@+id/btnSlideTwo"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="协调布局全屏"
+        android:id="@+id/btnCoordinate"/>
     
 </LinearLayout>
     </com.example.myapplication.widget.ElasticScrollView>
@@ -94,11 +120,5 @@
             android:id="@+id/niceSpinner"/>
 
     </LinearLayout>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="40dp" 
-        android:text="云音乐动画"
-        android:gravity="center_vertical"
-        android:id="@+id/tvAnimationDrawable"/>
    
     </LinearLayout>

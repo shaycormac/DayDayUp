@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +72,34 @@ public class Main3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(getApplication(),ShowProgressActivity.class));
+            }
+        });
+        Button btnSlideConflict = (Button) findViewById(R.id.btnSlideConflict);
+        btnSlideConflict.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),SlideConflictOneActivity.class));
+            }
+        });
+        Button btnSlideOne = (Button) findViewById(R.id.btnSlideOne);
+        btnSlideOne.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),SlideResolveFatherActivity.class));
+            }
+        });
+        Button btnSlideTwo = (Button) findViewById(R.id.btnSlideTwo);
+        btnSlideTwo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),SlideResolveSonActivity.class));
+            }
+        });
+        Button btnCoordinate = (Button) findViewById(R.id.btnCoordinate);
+        btnCoordinate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplication(),CoordinatActivity.class));
             }
         });
     }

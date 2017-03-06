@@ -37,7 +37,14 @@
             android:name=".activity.MyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.ShowStatusActivity" />
-        <activity android:name=".activity.ShowProgressActivity"></activity>
+        <activity android:name=".activity.ShowProgressActivity" />
+        <activity android:name=".activity.SlideConflictOneActivity" />
+        <activity android:name=".activity.SlideResolveFatherActivity" />
+        <activity android:name=".activity.SlideResolveSonActivity" />
+        <activity
+            android:name=".activity.CoordinatActivity"
+            android:label="@string/title_activity_coordinat"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

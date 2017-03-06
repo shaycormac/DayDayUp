@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private Dialog dialog;
     private Button btnRcvDecoration;
     private FrameLayout flOnclickTest;
+    private Button btnMuitAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
@@ -86,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
             });
             btnTotast.setClipToOutline(true);
         }*/
-        
+        btnMuitAdapter = (Button) findViewById(R.id.btnMuitAdapter);
 
         bindListener();
     }
@@ -162,6 +163,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,ItemDecorationActivity.class));
+            }
+        });
+        btnMuitAdapter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //
             }
         });
     }
