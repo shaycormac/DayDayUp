@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">StudyJs2Webview</string>
+    <string name="title_activity_card_view">CardViewActivity</string>
 </resources>

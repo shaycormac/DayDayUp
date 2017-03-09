@@ -9,6 +9,11 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnStudyJs"
         android:text="js调用java"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnCardView"
+        android:text="CardView兼容性测试"/>
 
     
 </LinearLayout>
