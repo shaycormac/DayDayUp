@@ -19,7 +19,11 @@
         <activity
             android:name=".activity.CardViewActivity"
             android:label="@string/title_activity_card_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.CoordinatorLayoutActivity"
+            android:label="@string/title_activity_coordinator_layout"
+            android:theme="@style/AppTheme.Immersive"></activity>
     </application>
 
 </manifest>
