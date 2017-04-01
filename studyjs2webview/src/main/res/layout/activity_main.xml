@@ -14,6 +14,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnCardView"
         android:text="CardView兼容性测试"/>
+    <TextView
+        android:id="@+id/textViewHahah"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+        android:text="hahahahah"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btnGestureStudy"
+        android:text="手势识别"/>
 
     
 </LinearLayout>

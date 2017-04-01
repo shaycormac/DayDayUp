@@ -2,4 +2,5 @@
     <string name="app_name">StudyJs2Webview</string>
     <string name="title_activity_card_view">CardViewActivity</string>
     <string name="title_activity_coordinator_layout">CoordinatorLayoutActivity</string>
+    <string name="title_activity_loader_study">LoaderStudyActivity</string>
 </resources>

@@ -7,9 +7,11 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.studypermission.activity.StartActivity;
 import com.zhy.m.permission.MPermissions;
 import com.zhy.m.permission.PermissionDenied;
 import com.zhy.m.permission.PermissionGrant;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //权限回调所用的回调码
     public static final int MY_PERMISSONS_REQUEST_CALL_PHONE = 1;
     private MainActivity activity;
+    private Button btnTabSelect;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
                 {
                     callPhone();
                 }*/
+            }
+        });
+        findViewById(R.id.btnTabSelect).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, StartActivity.class));
             }
         });
     }

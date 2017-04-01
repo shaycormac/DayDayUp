@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.studyjs2webview">
 
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,7 +25,12 @@
         <activity
             android:name=".activity.CoordinatorLayoutActivity"
             android:label="@string/title_activity_coordinator_layout"
-            android:theme="@style/AppTheme.Immersive"></activity>
+            android:theme="@style/AppTheme.Immersive" />
+        <activity
+            android:name=".activity.LoaderStudyActivity"
+            android:label="@string/title_activity_loader_study"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activity.GestureStudyActivity"></activity>
     </application>
 
 </manifest>
