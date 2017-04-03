@@ -23,7 +23,11 @@
         <activity
             android:name=".activity.CoordinatorLayoutActivity"
             android:label="@string/title_activity_coordinator_layout"
-            android:theme="@style/AppTheme.Immersive"></activity>
+            android:theme="@style/AppTheme.Immersive" />
+        <activity
+            android:name=".activity.ViewTreeObserverActivity"
+            android:label="@string/title_activity_view_tree_observer"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

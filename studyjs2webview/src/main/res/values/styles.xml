@@ -23,7 +23,6 @@
     </style>
 
 
-    <style name="AppTheme.Immersive" parent="AppTheme.NoActionBar">
-    </style>
+    <style name="AppTheme.Immersive" parent="AppTheme.NoActionBar"></style>
 
 </resources>
