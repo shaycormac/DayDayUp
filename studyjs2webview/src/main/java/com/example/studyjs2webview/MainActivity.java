@@ -6,6 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.studyjs2webview.activity.GestureStudyActivity;
+import com.example.studyjs2webview.activity.Js2JavaActivity;
+import com.example.studyjs2webview.activity.SharePreferenceActivity;
+
+import java.util.Arrays;
 import com.example.studyjs2webview.activity.CoordinatorLayoutActivity;
 
 /**
@@ -52,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
 
         testBitMap();
 
+        findViewById(R.id.btnSharePreferencesStudy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SharePreferenceActivity.class));
+            }
+        });
         sortArray(array);
         Arrays.sort(array);  
     }

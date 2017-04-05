@@ -1,3 +1,3 @@
-include ':studybehavior', ':somemyidea', ':myapplication', ':studyjs2webview',':designpatterstudy', ':studypermission', ':mvparchitecturestudy', 'demo', 'android5.0', ':customSpinner'
+include ':studybehavior', ':somemyidea', ':myapplication', ':studyjs2webview', ':designpatterstudy', ':studypermission', ':mvparchitecturestudy', ':wangyidemo', 'demo', 'android5.0', ':customSpinner'
 
 
