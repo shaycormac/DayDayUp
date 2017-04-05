@@ -30,7 +30,8 @@
             android:name=".activity.LoaderStudyActivity"
             android:label="@string/title_activity_loader_study"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.GestureStudyActivity"></activity>
+        <activity android:name=".activity.GestureStudyActivity" />
+        <activity android:name=".activity.SharePreferenceActivity"></activity>
     </application>
 
 </manifest>

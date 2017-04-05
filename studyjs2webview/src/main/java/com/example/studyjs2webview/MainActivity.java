@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.studyjs2webview.activity.GestureStudyActivity;
 import com.example.studyjs2webview.activity.Js2JavaActivity;
+import com.example.studyjs2webview.activity.SharePreferenceActivity;
 
 import java.util.Arrays;
 
@@ -48,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, GestureStudyActivity.class));
+            }
+        });
+        findViewById(R.id.btnSharePreferencesStudy).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, SharePreferenceActivity.class));
             }
         });
         sortArray(array);
