@@ -2,16 +2,22 @@ package com.example.studyjs2webview;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Paint;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.studyjs2webview.activity.GestureStudyActivity;
 import com.example.studyjs2webview.activity.Js2JavaActivity;
 import com.example.studyjs2webview.activity.SharePreferenceActivity;
 
 import java.util.Arrays;
-import com.example.studyjs2webview.activity.CoordinatorLayoutActivity;
 
 /**
  * User: 炳华儿(574583006@qq.com)
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btnStudyJs).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, ViewTreeObserverActivity.class));
+              //  startActivity(new Intent(MainActivity.this, ViewTreeObserverActivity.class));
                 startActivity(new Intent(MainActivity.this, Js2JavaActivity.class));
             }
         });
@@ -69,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+  
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void testBitMap() {
         // 不做处理，默认缩放。

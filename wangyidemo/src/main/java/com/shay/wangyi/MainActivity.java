@@ -1,5 +1,6 @@
 package com.shay.wangyi;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.shay.wangyi.activity.AsynTaskStudy;
 import com.shay.wangyi.fragment.BookFragment;
 import com.shay.wangyi.fragment.GankFragment;
 import com.shay.wangyi.fragment.OneFragment;
@@ -75,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                         Log.e("Test---->","点击了弹出菜单2");
                         break;
                     case R.id.toolbar_r_3:
-                        Log.e("Test---->","点击了弹出菜单3");
+                        startActivity(new Intent(MainActivity.this, AsynTaskStudy.class));
                         break;
                 }
                 return true;    //返回为true
