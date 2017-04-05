@@ -15,10 +15,16 @@ import com.example.designpatterstudy.factoryMethodPattern.AppleFactory;
 import com.example.designpatterstudy.factoryMethodPattern.BananaFactory;
 import com.example.designpatterstudy.factoryMethodPattern.InterfaceFactory;
 import com.example.designpatterstudy.simpleFactoryPattern.Fruit;
+import com.example.designpatterstudy.singtonDesign.EnumSington;
+import com.example.designpatterstudy.singtonDesign.SingleClass;
+import com.example.designpatterstudy.singtonDesign.StaticClassSingle;
 import com.example.designpatterstudy.widget.NumberAnimation;
 import com.example.designpatterstudy.widget.RuningNumView;
 
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -29,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
     String score = "750";
     List<String> strings=null;
 
+    //两个单例对象
+    SingleClass aClass;
+    SingleClass aClass1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,5 +124,81 @@ public class MainActivity extends AppCompatActivity {
         //桥接模式
         BridgePatternStudy2 study2 = new BridgePatternStudy2();
         study2.main();
+        
+        //
+        //两种都很叼的方式，推荐enum,以爆炸。
+        //得到enum单例
+      
+        
+        //得到静态内部类的单例
+        
+
+        BlockingQueue<Integer> queue=new ArrayBlockingQueue<Integer>(100);
+        Producer p=new Producer(queue);
+        Consumer c1=new Consumer(queue);
+        Consumer c2=new Consumer(queue);
+
+        new Thread(p).start();
+        new Thread(c1).start();
+        new Thread(c2).start();
     }
+
+
+
+    //消费者
+    public class Producer implements Runnable{
+        private final BlockingQueue<Integer> queue;
+
+        public Producer(BlockingQueue q){
+            this.queue=q;
+        }
+
+        @Override
+        public void run() {
+            try {
+                while (true){
+                    Thread.sleep(1000);//模拟耗时
+                    queue.put(produce());
+                }
+            }catch (InterruptedException e){
+
+            }
+        }
+
+        private int produce() {
+            int n=new Random().nextInt(10000);
+            System.out.println("Thread:" + Thread.currentThread().getId() + " produce:" + n);
+            aClass = EnumSington.INSTANCE.getInstance();
+            aClass1 =  StaticClassSingle.getInstanceA().getInstance();
+            System.out.println("得到的对象  "+aClass.toString()+"   "+aClass1.toString());
+            return n;
+        }
+    }
+    //消费者
+    public class Consumer implements Runnable {
+        private final BlockingQueue<Integer> queue;
+
+        public Consumer(BlockingQueue q){
+            this.queue=q;
+        }
+
+        @Override
+        public void run() {
+            while (true){
+                try {
+                    Thread.sleep(2000);//模拟耗时
+                    consume(queue.take());
+                }catch (InterruptedException e){
+
+                }
+
+            }
+        }
+
+        private void consume(Integer n) {
+            System.out.println("Thread:" + Thread.currentThread().getId() + " consume:" + n);
+
+        }
+    }
+   
 }

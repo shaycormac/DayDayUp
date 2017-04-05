@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_loader_study"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.studyjs2webview.activity.LoaderStudyActivity"
+    tools:showIn="@layout/activity_loader_study">
+
+    <TextView android:id="@+id/tvTip"
+        android:hint="请输入关键字过滤联系人"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="30dp" />
+
+    <EditText android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <ListView android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
+</LinearLayout>

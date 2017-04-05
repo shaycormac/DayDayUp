@@ -12,4 +12,15 @@
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
     </style>
+
+    <style name="CardViewSalonStyle" parent="Base.CardView">
+        <item name="cardCornerRadius">0dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:clickable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:stateListAnimator">@drawable/card_view_touch_raise</item>
+        <item name="android:layout_marginBottom">0.5dp</item>
+        <item name="android:padding">12dp</item>
+    </style>
 </resources>
