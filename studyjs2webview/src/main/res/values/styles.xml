@@ -36,5 +36,5 @@
         <item name="android:foreground">?attr/selectableItemBackground</item>
         <item name="contentPadding">12dp</item>
     </style>
-
+    
 </resources>
