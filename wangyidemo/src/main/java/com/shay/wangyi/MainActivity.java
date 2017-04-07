@@ -2,17 +2,23 @@ package com.shay.wangyi;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.shay.wangyi.fragment.BookFragment;
 import com.shay.wangyi.fragment.GankFragment;
@@ -33,11 +39,14 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
     private ViewPager vpContent;
     private Toolbar toolbar;
     private ImageView iv_title_menu;
+    //抽屉布局
+    private DrawerLayout drawer_layout;
+    private NavigationView navView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_draw_navigation);
        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //设置显示图标
@@ -56,6 +65,24 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         });
         initId();
         initViewPagerFragment();
+        //设置抽屉布局
+        initDrawerLayout();
+    }
+
+    private void initDrawerLayout()
+    {
+        navView.inflateHeaderView(R.layout.nav_header_main);
+        View headerView = navView.getHeaderView(0);
+        ImageView ivAvatar = (ImageView) headerView.findViewById(R.id.iv_avatar);
+        ivAvatar.setImageResource(R.mipmap.ic_launcher);
+        LinearLayout llNavHomepage = (LinearLayout) headerView.findViewById(R.id.ll_nav_homepage);
+        LinearLayout llNavScanDownload = (LinearLayout) headerView.findViewById(R.id.ll_nav_scan_download);
+        LinearLayout llNavDeedback = (LinearLayout) headerView.findViewById(R.id.ll_nav_deedback);
+        LinearLayout llNavAbout = (LinearLayout) headerView.findViewById(R.id.ll_nav_about);
+        llNavHomepage.setOnClickListener(this);
+        llNavScanDownload.setOnClickListener(this);
+        llNavDeedback.setOnClickListener(this);
+        llNavAbout.setOnClickListener(this);
     }
 
     private void initToobar() 
@@ -107,9 +134,12 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
         llTitleDou = (ImageView) findViewById(R.id.iv_title_dou);
         iv_title_menu = (ImageView) findViewById(R.id.iv_title_menu);
         vpContent = (ViewPager) findViewById(R.id.vp_content);
+        navView = (NavigationView) findViewById(R.id.navView);
+        drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
         llTitleGank.setOnClickListener(this);
         llTitleOne.setOnClickListener(this);
         llTitleDou.setOnClickListener(this);
+        iv_title_menu.setOnClickListener(this);
     }
 
     @Override
@@ -202,7 +232,60 @@ public class MainActivity extends AppCompatActivity implements ViewPager.OnPageC
                     vpContent.setCurrentItem(2);
                 }
                 break;
+            case R.id.iv_title_menu:
+                drawer_layout.openDrawer(GravityCompat.START, true);
+                break;
+            case R.id.ll_nav_homepage:// 主页
+                drawer_layout.closeDrawer(GravityCompat.START);
+                drawer_layout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() 
+                    {
+                        Toast.makeText(MainActivity.this, "呵呵哒，跳进另一个主页", Toast.LENGTH_SHORT).show();;
+                    }
+                }, 360);
+
+                break;
+
+            case R.id.ll_nav_scan_download://扫码下载
+                drawer_layout.closeDrawer(GravityCompat.START);
+                drawer_layout.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(MainActivity.this, "呵呵哒，跳进另一个主页", Toast.LENGTH_SHORT).show();
+                    }
+                }, 360);
+                break;
         }
         
+    }
+
+  //抽屉导航返回键关闭
+    @Override
+    public void onBackPressed()
+    {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
+        if (keyCode == KeyEvent.KEYCODE_BACK) 
+        {
+            if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
+                drawer_layout.closeDrawer(GravityCompat.START);
+            } else 
+            {
+                // 不退出程序，进入后台
+                moveTaskToBack(true);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

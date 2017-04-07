@@ -24,6 +24,10 @@
             android:name=".activity.StartActivity"
             android:label="@string/title_activity_start"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.DrawNavigationActivity"
+            android:label="@string/title_activity_draw_navigation"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
