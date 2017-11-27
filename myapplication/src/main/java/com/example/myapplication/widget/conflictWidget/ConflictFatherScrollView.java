@@ -55,6 +55,7 @@ public class ConflictFatherScrollView extends ScrollView
           case MotionEvent.ACTION_MOVE :
               if (listView!=null)
               {
+                  //临界点
                   if ( isTop(listView) && y>nowY)
                   {
                       intercepted = true;
@@ -87,12 +88,15 @@ public class ConflictFatherScrollView extends ScrollView
     public boolean isBottom(ListView listView)
     {
         boolean result = false;
+        //找到最后一个可见的item是list的最后一个元素
         if (listView.getLastVisiblePosition()==(listView.getCount()-1))
         {
             //先弄清一个概念。getTop，getLeft等是相对于它的父布局来说的，这里就是listView
             //最后一个view是这么找到的，当前屏幕的最后一个可见位置减去第一个可见位置
             View bottomChildView = listView.getChildAt(listView.getLastVisiblePosition() - listView.getFirstVisiblePosition());
             //是否到底部是当前listView的高度是否大于最后一个位置的高度
+            //listView.getHeight() >= bottomChildView.getBottom()这个判断应该是强调最后一个item完整的显露出来，再让
+            //父亲滑动
             result = (listView.getHeight() >= bottomChildView.getBottom());
         }
         return result;
@@ -104,6 +108,7 @@ public class ConflictFatherScrollView extends ScrollView
         if (listView.getFirstVisiblePosition()==0)
         {
             View topChildView = listView.getChildAt(0);
+            //topChildView.getTop() == 0 这个判断是第一个元素完全可见，且最顶端完全显露出来，再滑动。
             result = topChildView.getTop() == 0;
         }
         return result;
